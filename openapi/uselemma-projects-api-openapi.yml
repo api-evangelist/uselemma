@@ -1,0 +1,639 @@
+openapi: 3.1.0
+info:
+  title: Lemma Platform Artifacts Projects API
+  description: Lemma Platform HTTP API for AI observability and workspace operations.
+  version: 0.1.0
+servers:
+- url: https://api.uselemma.ai
+  description: Lemma production API
+security:
+- bearerAuth: []
+tags:
+- name: Projects
+paths:
+  /projects:
+    get:
+      operationId: list_projects
+      tags:
+      - Projects
+      summary: List projects
+      description: Returns projects available to the authenticated tenant.
+      responses:
+        '200':
+          description: Projects list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projects:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type:
+                          - string
+                          - 'null'
+                        sort_order:
+                          type: number
+                        created_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        updated_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                      required:
+                      - id
+                      - name
+                      - description
+                      - sort_order
+                      - created_at
+                      - updated_at
+                      additionalProperties: false
+                required:
+                - projects
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+    post:
+      operationId: create_project
+      tags:
+      - Projects
+      summary: Create project
+      description: Create a project for the authenticated tenant.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                description:
+                  type:
+                  - string
+                  - 'null'
+              additionalProperties: false
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                  sort_order:
+                    type: number
+                  created_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                  updated_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                required:
+                - id
+                - name
+                - description
+                - sort_order
+                - created_at
+                - updated_at
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /projects/reorder:
+    post:
+      operationId: reorder_projects
+      tags:
+      - Projects
+      summary: Reorder projects
+      description: Persist project ordering for the authenticated tenant.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - ordered_ids
+              properties:
+                ordered_ids:
+                  type: array
+                  items:
+                    type: string
+                orderedIds:
+                  type: array
+                  items:
+                    type: string
+              additionalProperties: false
+      responses:
+        '204':
+          description: Projects reordered
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /projects/{project_id}:
+    get:
+      operationId: get_project
+      tags:
+      - Projects
+      summary: Get project
+      description: Returns a single project if it belongs to the authenticated tenant.
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Project
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                  sort_order:
+                    type: number
+                  created_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                  updated_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                required:
+                - id
+                - name
+                - description
+                - sort_order
+                - created_at
+                - updated_at
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+    patch:
+      operationId: update_project
+      tags:
+      - Projects
+      summary: Update project
+      description: Update a project for the authenticated tenant.
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                description:
+                  type:
+                  - string
+                  - 'null'
+              additionalProperties: false
+      responses:
+        '200':
+          description: Updated project
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type:
+                    - string
+                    - 'null'
+                  sort_order:
+                    type: number
+                  created_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                  updated_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                required:
+                - id
+                - name
+                - description
+                - sort_order
+                - created_at
+                - updated_at
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /projects/{project_id}/metric-event-counts:
+    get:
+      operationId: get_metric_event_counts
+      tags:
+      - Projects
+      summary: Get project metric event counts
+      description: Returns metric event counts for a project.
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Metric event counts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  counts:
+                    type: object
+                    additionalProperties:
+                      type: number
+                required:
+                - counts
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /projects/{project_id}/analytics:
+    get:
+      operationId: get_project_analytics
+      tags:
+      - Projects
+      summary: Get project analytics
+      description: Returns request/error/speed/token timeseries + top models for a project over a time range.
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Project analytics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  requests:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                        value:
+                          type: number
+                      required:
+                      - date
+                      - value
+                      additionalProperties: false
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                        value:
+                          type: number
+                      required:
+                      - date
+                      - value
+                      additionalProperties: false
+                  speed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                        value:
+                          type: number
+                      required:
+                      - date
+                      - value
+                      additionalProperties: false
+                  prompt_tokens:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                        value:
+                          type: number
+                      required:
+                      - date
+                      - value
+                      additionalProperties: false
+                  completion_tokens:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                        value:
+                          type: number
+                      required:
+                      - date
+                      - value
+                      additionalProperties: false
+                  top_models:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        model:
+                          type: string
+                        count:
+                          type: number
+                      required:
+                      - model
+                      - count
+                      additionalProperties: false
+                  speed_percentiles_timeseries:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                        p50:
+                          type: number
+                        p95:
+                          type: number
+                        p99:
+                          type: number
+                      required:
+                      - date
+                      - p50
+                      - p95
+                      - p99
+                      additionalProperties: false
+                  totals:
+                    type: object
+                    properties:
+                      requests:
+                        type: number
+                      errors:
+                        type: number
+                      avg_speed:
+                        type: number
+                      prompt_tokens:
+                        type: number
+                      completion_tokens:
+                        type: number
+                      speed_percentiles:
+                        type: object
+                        properties:
+                          p50:
+                            type: number
+                          p95:
+                            type: number
+                          p99:
+                            type: number
+                        required:
+                        - p50
+                        - p95
+                        - p99
+                        additionalProperties: false
+                    required:
+                    - requests
+                    - errors
+                    - avg_speed
+                    - prompt_tokens
+                    - completion_tokens
+                    - speed_percentiles
+                    additionalProperties: false
+                required:
+                - requests
+                - errors
+                - speed
+                - prompt_tokens
+                - completion_tokens
+                - top_models
+                - speed_percentiles_timeseries
+                - totals
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /projects/{project_id}/model-scorecard:
+    get:
+      operationId: get_project_model_scorecard
+      tags:
+      - Projects
+      summary: Get project model scorecard
+      description: Returns per-model trace/token/speed aggregates for a project.
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Model scorecard
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rows:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        model:
+                          type: string
+                        traces:
+                          type: number
+                        tokens:
+                          type: number
+                        avg_speed:
+                          type: number
+                      required:
+                      - model
+                      - traces
+                      - tokens
+                      - avg_speed
+                      additionalProperties: false
+                required:
+                - rows
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

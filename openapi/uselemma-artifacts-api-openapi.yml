@@ -1,0 +1,545 @@
+openapi: 3.1.0
+info:
+  title: Lemma Platform Artifacts API
+  description: Lemma Platform HTTP API for AI observability and workspace operations.
+  version: 0.1.0
+servers:
+- url: https://api.uselemma.ai
+  description: Lemma production API
+security:
+- bearerAuth: []
+tags:
+- name: Artifacts
+paths:
+  /projects/{project_id}/artifacts:
+    get:
+      operationId: list_project_artifacts
+      tags:
+      - Artifacts
+      summary: List project artifacts
+      description: Returns learn-agent and uploaded artifacts for a project, scoped to the selected agent.
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        description: Project ID
+        schema:
+          type: string
+      - name: agent_name
+        in: query
+        required: false
+        description: Optional agent name used to scope artifacts. Omit to select the most recently updated artifact agent.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Project artifacts
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  selected_agent_name:
+                    type:
+                    - string
+                    - 'null'
+                  agents:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        agent_name:
+                          type:
+                          - string
+                          - 'null'
+                        latest_version:
+                          type:
+                          - number
+                          - 'null'
+                        updated_at:
+                          type: string
+                      required:
+                      - agent_name
+                      - latest_version
+                      - updated_at
+                      additionalProperties: false
+                  learn_agent_artifact:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      version:
+                        type: number
+                      run_id:
+                        type: string
+                      agent_name:
+                        type:
+                        - string
+                        - 'null'
+                      knowledge_md:
+                        type: string
+                      mermaid:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                    required:
+                    - version
+                    - run_id
+                    - agent_name
+                    - knowledge_md
+                    - mermaid
+                    - created_at
+                    - updated_at
+                    additionalProperties: false
+                  uploaded_artifacts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        project_id:
+                          type: string
+                        agent_name:
+                          type:
+                          - string
+                          - 'null'
+                        filename:
+                          type: string
+                        content_type:
+                          type: string
+                        size_bytes:
+                          type: number
+                        created_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                      required:
+                      - id
+                      - project_id
+                      - agent_name
+                      - filename
+                      - content_type
+                      - size_bytes
+                      - created_at
+                      additionalProperties: false
+                required:
+                - selected_agent_name
+                - agents
+                - learn_agent_artifact
+                - uploaded_artifacts
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+    post:
+      operationId: upload_project_artifact
+      tags:
+      - Artifacts
+      summary: Upload project artifact
+      description: Upload an agent-scoped .txt or .md file (text/plain or text/markdown).
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        description: Project ID
+        schema:
+          type: string
+      - name: agent_name
+        in: query
+        required: false
+        description: Optional agent name to attach to this uploaded artifact.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Uploaded text artifact metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  project_id:
+                    type: string
+                  agent_name:
+                    type:
+                    - string
+                    - 'null'
+                  filename:
+                    type: string
+                  content_type:
+                    type: string
+                  size_bytes:
+                    type: number
+                  created_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                required:
+                - id
+                - project_id
+                - agent_name
+                - filename
+                - content_type
+                - size_bytes
+                - created_at
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /projects/{project_id}/artifacts/versions:
+    get:
+      operationId: list_learn_agent_artifact_versions
+      tags:
+      - Artifacts
+      summary: List learn-agent artifact versions
+      description: Returns learn-agent KB version metadata for a project and agent, newest first. The response omits artifact content.
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        description: Project ID
+        schema:
+          type: string
+      - name: agent_name
+        in: query
+        required: false
+        description: Optional agent name used to scope learn-agent artifacts. Empty selects untagged artifacts.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Learn-agent artifact versions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    version:
+                      type: number
+                    run_id:
+                      type: string
+                    agent_name:
+                      type:
+                      - string
+                      - 'null'
+                    created_at:
+                      type: string
+                    updated_at:
+                      type: string
+                  required:
+                  - version
+                  - run_id
+                  - agent_name
+                  - created_at
+                  - updated_at
+                  additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /projects/{project_id}/artifacts/versions/{version}:
+    get:
+      operationId: get_learn_agent_artifact_version
+      tags:
+      - Artifacts
+      summary: Get learn-agent artifact version
+      description: Returns the learn-agent KB content and metadata for a specific project, agent, and version.
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        description: Project ID
+        schema:
+          type: string
+      - name: version
+        in: path
+        required: true
+        description: Learn-agent artifact version
+        schema:
+          type: string
+      - name: agent_name
+        in: query
+        required: false
+        description: Optional agent name used to scope learn-agent artifacts. Empty selects untagged artifacts.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Learn-agent artifact version
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: number
+                  run_id:
+                    type: string
+                  agent_name:
+                    type:
+                    - string
+                    - 'null'
+                  knowledge_md:
+                    type: string
+                  mermaid:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                required:
+                - version
+                - run_id
+                - agent_name
+                - knowledge_md
+                - mermaid
+                - created_at
+                - updated_at
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /projects/{project_id}/artifacts/regenerate:
+    post:
+      operationId: regenerate_project_artifacts
+      tags:
+      - Artifacts
+      summary: Regenerate project artifacts
+      description: Starts the learn-agent workflow for a tenant-owned project and optional agent. Duplicate project+agent triggers within the dedupe window return the same workflow_id; clients should poll list_project_artifacts for a new latest_version or learn_agent_artifact version to observe completion.
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        description: Project ID
+        schema:
+          type: string
+      - name: agent_name
+        in: query
+        required: false
+        description: Optional agent name used to scope the regenerated learn-agent artifacts.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Learn-agent workflow trigger handle
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  workflow_id:
+                    type: string
+                  project_id:
+                    type: string
+                  agent_name:
+                    type:
+                    - string
+                    - 'null'
+                required:
+                - workflow_id
+                - project_id
+                - agent_name
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /projects/{project_id}/artifacts/{artifact_id}/content:
+    get:
+      operationId: get_project_artifact_content
+      tags:
+      - Artifacts
+      summary: Get uploaded project artifact content
+      description: Returns stored text content and metadata for one uploaded text artifact.
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        description: Project ID
+        schema:
+          type: string
+      - name: artifact_id
+        in: path
+        required: true
+        description: Uploaded artifact ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Uploaded text artifact content
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  project_id:
+                    type: string
+                  agent_name:
+                    type:
+                    - string
+                    - 'null'
+                  filename:
+                    type: string
+                  content_type:
+                    type: string
+                  size_bytes:
+                    type: number
+                  created_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                  content:
+                    type: string
+                required:
+                - id
+                - project_id
+                - agent_name
+                - filename
+                - content_type
+                - size_bytes
+                - created_at
+                - content
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /projects/{project_id}/artifacts/{artifact_id}:
+    delete:
+      operationId: delete_project_artifact
+      tags:
+      - Artifacts
+      summary: Delete project artifact
+      description: Deletes one uploaded project artifact.
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        description: Project ID
+        schema:
+          type: string
+      - name: artifact_id
+        in: path
+        required: true
+        description: Uploaded artifact ID
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Uploaded text artifact deleted
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

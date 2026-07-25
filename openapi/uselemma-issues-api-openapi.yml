@@ -1,0 +1,1821 @@
+openapi: 3.1.0
+info:
+  title: Lemma Platform Artifacts Issues API
+  description: Lemma Platform HTTP API for AI observability and workspace operations.
+  version: 0.1.0
+servers:
+- url: https://api.uselemma.ai
+  description: Lemma production API
+security:
+- bearerAuth: []
+tags:
+- name: Issues
+paths:
+  /issues:
+    get:
+      operationId: list_issues
+      tags:
+      - Issues
+      summary: List issues
+      description: List issues for a project.
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        description: Issue status filter.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of records to return.
+        schema:
+          type: integer
+          minimum: 1
+      - name: offset
+        in: query
+        required: false
+        description: Number of records to skip.
+        schema:
+          type: integer
+          minimum: 0
+      responses:
+        '200':
+          description: Issues list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issues:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        project_id:
+                          type: string
+                        agent_name:
+                          type:
+                          - string
+                          - 'null'
+                        name:
+                          type: string
+                        subsystem:
+                          type:
+                          - string
+                          - 'null'
+                        failure_class:
+                          type:
+                          - string
+                          - 'null'
+                        canonical_mechanism:
+                          type:
+                          - string
+                          - 'null'
+                        status:
+                          type: string
+                          enum:
+                          - open
+                          - closed
+                        created_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        updated_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        first_seen_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        last_seen_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        occurrence_count:
+                          type: number
+                        trace_count:
+                          type: number
+                        latest_close_feedback:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            id:
+                              type: string
+                            issue_id:
+                              type: string
+                            project_id:
+                              type: string
+                            user_id:
+                              type:
+                              - string
+                              - 'null'
+                            api_key_id:
+                              type:
+                              - string
+                              - 'null'
+                            action:
+                              type: string
+                              enum:
+                              - resolved
+                              - dismissed
+                            reason:
+                              type:
+                              - string
+                              - 'null'
+                            detail:
+                              type:
+                              - string
+                              - 'null'
+                            created_at:
+                              type:
+                              - string
+                              - 'null'
+                              format: date-time
+                          required:
+                          - id
+                          - issue_id
+                          - project_id
+                          - user_id
+                          - api_key_id
+                          - action
+                          - reason
+                          - detail
+                          - created_at
+                          additionalProperties: false
+                        linked_metric:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                          required:
+                          - id
+                          - name
+                          additionalProperties: false
+                        validation:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            status:
+                              type: string
+                              enum:
+                              - valid
+                              - invalid
+                              - inconclusive
+                              - failed
+                              - not_run
+                          required:
+                          - status
+                          additionalProperties: false
+                        lane_scores:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            A:
+                              type: number
+                            B:
+                              type: number
+                            C:
+                              type: number
+                          required:
+                          - A
+                          - B
+                          - C
+                          additionalProperties: false
+                        raw_lane_scores:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            impact_occurrences:
+                              type: number
+                            impact_project_occurrences:
+                              type: number
+                            impact_project_traces:
+                              type: number
+                            impact_occurrence_share:
+                              type: number
+                            impact_affected_traces:
+                              type: number
+                            impact_trace_share:
+                              type: number
+                            impact_trace_share_lower:
+                              type: number
+                            impact_judged_traces:
+                              type: number
+                            spike_current:
+                              type: number
+                            spike_baseline:
+                              type: number
+                            spike_ratio:
+                              type: number
+                            spike_baseline_count:
+                              type: number
+                            spike_baseline_exposure:
+                              type: number
+                            spike_current_exposure:
+                              type: number
+                            persistence_span_days:
+                              type: number
+                            persistence_active_days:
+                              type: number
+                            resolution_floor:
+                              type:
+                              - number
+                              - 'null'
+                          required:
+                          - impact_occurrences
+                          - impact_project_occurrences
+                          - impact_project_traces
+                          - impact_occurrence_share
+                          - impact_affected_traces
+                          - impact_trace_share
+                          - impact_trace_share_lower
+                          - impact_judged_traces
+                          - spike_current
+                          - spike_baseline
+                          - spike_ratio
+                          - spike_baseline_count
+                          - spike_baseline_exposure
+                          - spike_current_exposure
+                          - persistence_span_days
+                          - persistence_active_days
+                          - resolution_floor
+                          additionalProperties: false
+                        lanes_fired:
+                          type:
+                          - array
+                          - 'null'
+                          items:
+                            type: string
+                            enum:
+                            - A
+                            - B
+                            - C
+                        metric_flags:
+                          type: object
+                          properties:
+                            impact:
+                              type:
+                              - boolean
+                              - 'null'
+                            spike:
+                              type:
+                              - boolean
+                              - 'null'
+                            persistence:
+                              type:
+                              - boolean
+                              - 'null'
+                          required:
+                          - impact
+                          - spike
+                          - persistence
+                          additionalProperties: false
+                        fired_count:
+                          type:
+                          - number
+                          - 'null'
+                        surface:
+                          type:
+                          - boolean
+                          - 'null'
+                        notify:
+                          type:
+                          - boolean
+                          - 'null'
+                        priority_computed_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                      required:
+                      - id
+                      - project_id
+                      - agent_name
+                      - name
+                      - subsystem
+                      - failure_class
+                      - canonical_mechanism
+                      - status
+                      - created_at
+                      - updated_at
+                      - first_seen_at
+                      - last_seen_at
+                      - occurrence_count
+                      - trace_count
+                      - latest_close_feedback
+                      - linked_metric
+                      - validation
+                      - lane_scores
+                      - raw_lane_scores
+                      - lanes_fired
+                      - metric_flags
+                      - fired_count
+                      - surface
+                      - notify
+                      - priority_computed_at
+                      additionalProperties: false
+                  total:
+                    type: number
+                  limit:
+                    type: number
+                  offset:
+                    type: number
+                  has_more:
+                    type: boolean
+                required:
+                - issues
+                - total
+                - limit
+                - offset
+                - has_more
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /issues/dashboard:
+    get:
+      operationId: list_dashboard_issues
+      tags:
+      - Issues
+      summary: List dashboard issues
+      description: List dashboard-ready issues for a project.
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Dashboard issues
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issues:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        status:
+                          type: string
+                          enum:
+                          - open
+                          - closed
+                        agent_name:
+                          type:
+                          - string
+                          - 'null'
+                        subsystem:
+                          type:
+                          - string
+                          - 'null'
+                        failure_class:
+                          type:
+                          - string
+                          - 'null'
+                        canonical_mechanism:
+                          type:
+                          - string
+                          - 'null'
+                        first_seen_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        last_seen_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        occurrence_count:
+                          type: number
+                        trace_count:
+                          type: number
+                        latest_close_feedback:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            id:
+                              type: string
+                            issue_id:
+                              type: string
+                            project_id:
+                              type: string
+                            user_id:
+                              type:
+                              - string
+                              - 'null'
+                            api_key_id:
+                              type:
+                              - string
+                              - 'null'
+                            action:
+                              type: string
+                              enum:
+                              - resolved
+                              - dismissed
+                            reason:
+                              type:
+                              - string
+                              - 'null'
+                            detail:
+                              type:
+                              - string
+                              - 'null'
+                            created_at:
+                              type:
+                              - string
+                              - 'null'
+                              format: date-time
+                          required:
+                          - id
+                          - issue_id
+                          - project_id
+                          - user_id
+                          - api_key_id
+                          - action
+                          - reason
+                          - detail
+                          - created_at
+                          additionalProperties: false
+                        linked_metric:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                          required:
+                          - id
+                          - name
+                          additionalProperties: false
+                        validation:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            status:
+                              type: string
+                              enum:
+                              - valid
+                              - invalid
+                              - inconclusive
+                              - failed
+                              - not_run
+                          required:
+                          - status
+                          additionalProperties: false
+                        lane_scores:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            A:
+                              type: number
+                            B:
+                              type: number
+                            C:
+                              type: number
+                          required:
+                          - A
+                          - B
+                          - C
+                          additionalProperties: false
+                        raw_lane_scores:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            impact_occurrences:
+                              type: number
+                            impact_project_occurrences:
+                              type: number
+                            impact_project_traces:
+                              type: number
+                            impact_occurrence_share:
+                              type: number
+                            impact_affected_traces:
+                              type: number
+                            impact_trace_share:
+                              type: number
+                            impact_trace_share_lower:
+                              type: number
+                            impact_judged_traces:
+                              type: number
+                            spike_current:
+                              type: number
+                            spike_baseline:
+                              type: number
+                            spike_ratio:
+                              type: number
+                            spike_baseline_count:
+                              type: number
+                            spike_baseline_exposure:
+                              type: number
+                            spike_current_exposure:
+                              type: number
+                            persistence_span_days:
+                              type: number
+                            persistence_active_days:
+                              type: number
+                            resolution_floor:
+                              type:
+                              - number
+                              - 'null'
+                          required:
+                          - impact_occurrences
+                          - impact_project_occurrences
+                          - impact_project_traces
+                          - impact_occurrence_share
+                          - impact_affected_traces
+                          - impact_trace_share
+                          - impact_trace_share_lower
+                          - impact_judged_traces
+                          - spike_current
+                          - spike_baseline
+                          - spike_ratio
+                          - spike_baseline_count
+                          - spike_baseline_exposure
+                          - spike_current_exposure
+                          - persistence_span_days
+                          - persistence_active_days
+                          - resolution_floor
+                          additionalProperties: false
+                        lanes_fired:
+                          type:
+                          - array
+                          - 'null'
+                          items:
+                            type: string
+                            enum:
+                            - A
+                            - B
+                            - C
+                        metric_flags:
+                          type: object
+                          properties:
+                            impact:
+                              type:
+                              - boolean
+                              - 'null'
+                            spike:
+                              type:
+                              - boolean
+                              - 'null'
+                            persistence:
+                              type:
+                              - boolean
+                              - 'null'
+                          required:
+                          - impact
+                          - spike
+                          - persistence
+                          additionalProperties: false
+                        fired_count:
+                          type:
+                          - number
+                          - 'null'
+                        surface:
+                          type:
+                          - boolean
+                          - 'null'
+                        notify:
+                          type:
+                          - boolean
+                          - 'null'
+                        priority_computed_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                      required:
+                      - id
+                      - name
+                      - status
+                      - agent_name
+                      - subsystem
+                      - failure_class
+                      - canonical_mechanism
+                      - first_seen_at
+                      - last_seen_at
+                      - occurrence_count
+                      - trace_count
+                      - latest_close_feedback
+                      - linked_metric
+                      - validation
+                      - lane_scores
+                      - raw_lane_scores
+                      - lanes_fired
+                      - metric_flags
+                      - fired_count
+                      - surface
+                      - notify
+                      - priority_computed_at
+                      additionalProperties: false
+                required:
+                - issues
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /issues/{issue_id}:
+    get:
+      operationId: get_issue
+      tags:
+      - Issues
+      summary: Get issue
+      description: Get a single issue. The validation field is null when no validation row exists; when present it contains status, confidence, evidenceSummary, checkedTools, caveats, and validatedAt.
+      parameters:
+      - name: issue_id
+        in: path
+        required: true
+        description: Issue ID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Issue
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  project_id:
+                    type: string
+                  agent_name:
+                    type:
+                    - string
+                    - 'null'
+                  name:
+                    type: string
+                  subsystem:
+                    type:
+                    - string
+                    - 'null'
+                  failure_class:
+                    type:
+                    - string
+                    - 'null'
+                  canonical_mechanism:
+                    type:
+                    - string
+                    - 'null'
+                  status:
+                    type: string
+                    enum:
+                    - open
+                    - closed
+                  created_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                  updated_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                  latest_close_feedback:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      id:
+                        type: string
+                      issue_id:
+                        type: string
+                      project_id:
+                        type: string
+                      user_id:
+                        type:
+                        - string
+                        - 'null'
+                      api_key_id:
+                        type:
+                        - string
+                        - 'null'
+                      action:
+                        type: string
+                        enum:
+                        - resolved
+                        - dismissed
+                      reason:
+                        type:
+                        - string
+                        - 'null'
+                      detail:
+                        type:
+                        - string
+                        - 'null'
+                      created_at:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                    required:
+                    - id
+                    - issue_id
+                    - project_id
+                    - user_id
+                    - api_key_id
+                    - action
+                    - reason
+                    - detail
+                    - created_at
+                    additionalProperties: false
+                  linked_metric:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                    required:
+                    - id
+                    - name
+                    additionalProperties: false
+                  validation:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      status:
+                        type: string
+                        enum:
+                        - valid
+                        - invalid
+                        - inconclusive
+                        - failed
+                        - not_run
+                      confidence:
+                        type:
+                        - number
+                        - 'null'
+                      evidenceSummary:
+                        type:
+                        - string
+                        - 'null'
+                      checkedTools:
+                        type: array
+                        items:
+                          type: string
+                      caveats:
+                        type:
+                        - string
+                        - 'null'
+                      validatedAt:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                    required:
+                    - status
+                    - confidence
+                    - evidenceSummary
+                    - checkedTools
+                    - caveats
+                    - validatedAt
+                    additionalProperties: false
+                  lane_scores:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      A:
+                        type: number
+                      B:
+                        type: number
+                      C:
+                        type: number
+                    required:
+                    - A
+                    - B
+                    - C
+                    additionalProperties: false
+                  raw_lane_scores:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      impact_occurrences:
+                        type: number
+                      impact_project_occurrences:
+                        type: number
+                      impact_project_traces:
+                        type: number
+                      impact_occurrence_share:
+                        type: number
+                      impact_affected_traces:
+                        type: number
+                      impact_trace_share:
+                        type: number
+                      impact_trace_share_lower:
+                        type: number
+                      impact_judged_traces:
+                        type: number
+                      spike_current:
+                        type: number
+                      spike_baseline:
+                        type: number
+                      spike_ratio:
+                        type: number
+                      spike_baseline_count:
+                        type: number
+                      spike_baseline_exposure:
+                        type: number
+                      spike_current_exposure:
+                        type: number
+                      persistence_span_days:
+                        type: number
+                      persistence_active_days:
+                        type: number
+                      resolution_floor:
+                        type:
+                        - number
+                        - 'null'
+                    required:
+                    - impact_occurrences
+                    - impact_project_occurrences
+                    - impact_project_traces
+                    - impact_occurrence_share
+                    - impact_affected_traces
+                    - impact_trace_share
+                    - impact_trace_share_lower
+                    - impact_judged_traces
+                    - spike_current
+                    - spike_baseline
+                    - spike_ratio
+                    - spike_baseline_count
+                    - spike_baseline_exposure
+                    - spike_current_exposure
+                    - persistence_span_days
+                    - persistence_active_days
+                    - resolution_floor
+                    additionalProperties: false
+                  lanes_fired:
+                    type:
+                    - array
+                    - 'null'
+                    items:
+                      type: string
+                      enum:
+                      - A
+                      - B
+                      - C
+                  metric_flags:
+                    type: object
+                    properties:
+                      impact:
+                        type:
+                        - boolean
+                        - 'null'
+                      spike:
+                        type:
+                        - boolean
+                        - 'null'
+                      persistence:
+                        type:
+                        - boolean
+                        - 'null'
+                    required:
+                    - impact
+                    - spike
+                    - persistence
+                    additionalProperties: false
+                  fired_count:
+                    type:
+                    - number
+                    - 'null'
+                  surface:
+                    type:
+                    - boolean
+                    - 'null'
+                  notify:
+                    type:
+                    - boolean
+                    - 'null'
+                  priority_computed_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                required:
+                - id
+                - project_id
+                - agent_name
+                - name
+                - subsystem
+                - failure_class
+                - canonical_mechanism
+                - status
+                - created_at
+                - updated_at
+                - latest_close_feedback
+                - linked_metric
+                - validation
+                - lane_scores
+                - raw_lane_scores
+                - lanes_fired
+                - metric_flags
+                - fired_count
+                - surface
+                - notify
+                - priority_computed_at
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+    patch:
+      operationId: set_issue_status
+      tags:
+      - Issues
+      summary: Set issue status
+      description: Update issue lifecycle status. Resolved and dismissed close the issue and append close feedback.
+      parameters:
+      - name: issue_id
+        in: path
+        required: true
+        description: Issue ID.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - status
+              properties:
+                status:
+                  type: string
+                  enum:
+                  - open
+                  - resolved
+                  - dismissed
+                reason:
+                  type: string
+                  enum:
+                  - False positive
+                  - Working as intended
+                  - Test or synthetic traffic
+                  - Acceptable edge case
+                  - Known limitation
+                  - Out of scope
+                  description: 'Accepted values: False positive, Working as intended, Test or synthetic traffic, Acceptable edge case, Known limitation, Out of scope'
+                detail:
+                  type: string
+              additionalProperties: false
+      responses:
+        '204':
+          description: Issue status updated
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /issues/{issue_id}/metric-series:
+    get:
+      operationId: get_issue_metric_series
+      tags:
+      - Issues
+      summary: Get issue metric series
+      description: Returns zero-filled daily occurrence buckets for an issue over the last 30 days.
+      parameters:
+      - name: issue_id
+        in: path
+        required: true
+        description: Issue ID.
+        schema:
+          type: string
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      - name: as_of
+        in: query
+        required: false
+        description: As-of timestamp (ISO-8601) for the 30-day window.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Issue metric series
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issue_id:
+                    type: string
+                  project_id:
+                    type: string
+                  points:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                        occurrences:
+                          type: number
+                        estimated_occurrences:
+                          type: number
+                        estimated_occurrences_variance:
+                          type: number
+                        occurred:
+                          type: boolean
+                      required:
+                      - date
+                      - occurrences
+                      - estimated_occurrences
+                      - estimated_occurrences_variance
+                      - occurred
+                      additionalProperties: false
+                  baseline_mean:
+                    type: number
+                  band_low:
+                    type: number
+                  band_high:
+                    type: number
+                  estimated_baseline_mean:
+                    type: number
+                  estimated_band_high:
+                    type: number
+                required:
+                - issue_id
+                - project_id
+                - points
+                - baseline_mean
+                - band_low
+                - band_high
+                - estimated_baseline_mean
+                - estimated_band_high
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /issues/{issue_id}/artifact-context:
+    get:
+      operationId: get_issue_artifact_context
+      tags:
+      - Issues
+      summary: Get issue artifact context
+      description: Returns bounded learn-agent and uploaded text artifact context for validation and debugging.
+      parameters:
+      - name: issue_id
+        in: path
+        required: true
+        description: Issue ID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Issue artifact context
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issue_id:
+                    type: string
+                  project_id:
+                    type: string
+                  agent_name:
+                    type:
+                    - string
+                    - 'null'
+                  available:
+                    type: object
+                    properties:
+                      learn_agent_kb:
+                        type: boolean
+                      uploaded_text_artifacts:
+                        type: boolean
+                    required:
+                    - learn_agent_kb
+                    - uploaded_text_artifacts
+                    additionalProperties: false
+                  missing:
+                    type: array
+                    items:
+                      type: string
+                  learn_agent_kb:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      version:
+                        type: number
+                      agent_name:
+                        type:
+                        - string
+                        - 'null'
+                      knowledge_preview:
+                        type: string
+                      mermaid_preview:
+                        type: string
+                      knowledge_truncated:
+                        type: boolean
+                      mermaid_truncated:
+                        type: boolean
+                    required:
+                    - version
+                    - agent_name
+                    - knowledge_preview
+                    - mermaid_preview
+                    - knowledge_truncated
+                    - mermaid_truncated
+                    additionalProperties: false
+                  uploaded_text_artifacts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        filename:
+                          type: string
+                        content_type:
+                          type: string
+                        size_bytes:
+                          type: number
+                        content_preview:
+                          type: string
+                        preview_truncated:
+                          type: boolean
+                      required:
+                      - id
+                      - filename
+                      - content_type
+                      - size_bytes
+                      - content_preview
+                      - preview_truncated
+                      additionalProperties: false
+                  caveats:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - issue_id
+                - project_id
+                - agent_name
+                - available
+                - missing
+                - learn_agent_kb
+                - uploaded_text_artifacts
+                - caveats
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /issues/{issue_id}/occurrences:
+    get:
+      operationId: list_issue_occurrences
+      tags:
+      - Issues
+      summary: List issue occurrences
+      description: List occurrences for an issue.
+      parameters:
+      - name: issue_id
+        in: path
+        required: true
+        description: Issue ID.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of records to return.
+        schema:
+          type: integer
+          minimum: 1
+      - name: offset
+        in: query
+        required: false
+        description: Number of records to skip.
+        schema:
+          type: integer
+          minimum: 0
+      responses:
+        '200':
+          description: Issue occurrences
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  occurrences:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        trace_id:
+                          type: string
+                        issue_id:
+                          type:
+                          - string
+                          - 'null'
+                        title:
+                          type: string
+                        rationale:
+                          type: string
+                        source_span_ids:
+                          type: array
+                          items:
+                            type: string
+                        evidence_span_ids:
+                          type: array
+                          items:
+                            type: string
+                        citations: {}
+                        created_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        trace:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            id:
+                              type: string
+                            otel_trace_id:
+                              type:
+                              - string
+                              - 'null'
+                            project_id:
+                              type: string
+                            service_name:
+                              type:
+                              - string
+                              - 'null'
+                            created_at:
+                              type:
+                              - string
+                              - 'null'
+                              format: date-time
+                            thread_id:
+                              type:
+                              - string
+                              - 'null'
+                          required:
+                          - id
+                          - otel_trace_id
+                          - project_id
+                          - service_name
+                          - created_at
+                          - thread_id
+                          additionalProperties: false
+                      required:
+                      - id
+                      - trace_id
+                      - issue_id
+                      - title
+                      - rationale
+                      - source_span_ids
+                      - evidence_span_ids
+                      - created_at
+                      - trace
+                      additionalProperties: false
+                  total:
+                    type: number
+                  limit:
+                    type: number
+                  offset:
+                    type: number
+                  has_more:
+                    type: boolean
+                required:
+                - occurrences
+                - total
+                - limit
+                - offset
+                - has_more
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /issues/{issue_id}/chat-context:
+    get:
+      operationId: get_issue_chat_context
+      tags:
+      - Issues
+      summary: Get issue chat context
+      description: Returns the issue, recent occurrences, aggregate stats, and per-trace bundles (trace row + trace_stats + spans) for issue chat.
+      parameters:
+      - name: issue_id
+        in: path
+        required: true
+        description: Issue ID.
+        schema:
+          type: string
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Issue chat context
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issue:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      project_id:
+                        type: string
+                      agent_name:
+                        type:
+                        - string
+                        - 'null'
+                      name:
+                        type: string
+                      subsystem:
+                        type:
+                        - string
+                        - 'null'
+                      failure_class:
+                        type:
+                        - string
+                        - 'null'
+                      canonical_mechanism:
+                        type:
+                        - string
+                        - 'null'
+                      status:
+                        type: string
+                        enum:
+                        - open
+                        - closed
+                      created_at:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                      updated_at:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                    required:
+                    - id
+                    - project_id
+                    - agent_name
+                    - name
+                    - subsystem
+                    - failure_class
+                    - canonical_mechanism
+                    - status
+                    - created_at
+                    - updated_at
+                    additionalProperties: true
+                  occurrences:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        trace_id:
+                          type: string
+                        issue_id:
+                          type:
+                          - string
+                          - 'null'
+                        title:
+                          type: string
+                        rationale:
+                          type: string
+                        source_span_ids:
+                          type: array
+                          items:
+                            type: string
+                        evidence_span_ids:
+                          type: array
+                          items:
+                            type: string
+                        citations: {}
+                        category:
+                          type:
+                          - string
+                          - 'null'
+                        created_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                      required:
+                      - id
+                      - trace_id
+                      - issue_id
+                      - title
+                      - rationale
+                      additionalProperties: true
+                  traces:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        trace:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            project_id:
+                              type: string
+                            service_name:
+                              type:
+                              - string
+                              - 'null'
+                            created_at:
+                              type:
+                              - string
+                              - 'null'
+                              format: date-time
+                            updated_at:
+                              type:
+                              - string
+                              - 'null'
+                              format: date-time
+                            otel_trace_id:
+                              type: string
+                            ready:
+                              type: boolean
+                          required:
+                          - id
+                          - project_id
+                          - service_name
+                          - created_at
+                          - updated_at
+                          - otel_trace_id
+                          - ready
+                          additionalProperties: true
+                        stats:
+                          type:
+                          - object
+                          - 'null'
+                          additionalProperties: {}
+                        spans:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              otel_span_id:
+                                type: string
+                              parent_otel_span_id:
+                                type:
+                                - string
+                                - 'null'
+                              name:
+                                type: string
+                              kind:
+                                type:
+                                - string
+                                - 'null'
+                              start_time_ns:
+                                type:
+                                - string
+                                - 'null'
+                              end_time_ns:
+                                type:
+                                - string
+                                - 'null'
+                              duration_ms:
+                                type:
+                                - number
+                                - 'null'
+                              status_code:
+                                type:
+                                - string
+                                - 'null'
+                              status_description:
+                                type:
+                                - string
+                                - 'null'
+                              input_tokens:
+                                type:
+                                - number
+                                - 'null'
+                              output_tokens:
+                                type:
+                                - number
+                                - 'null'
+                              model_name:
+                                type:
+                                - string
+                                - 'null'
+                              tps:
+                                type:
+                                - number
+                                - 'null'
+                              attributes:
+                                type: object
+                                additionalProperties: {}
+                              events: {}
+                            required:
+                            - id
+                            - otel_span_id
+                            - parent_otel_span_id
+                            - name
+                            - kind
+                            - start_time_ns
+                            - end_time_ns
+                            - duration_ms
+                            - status_code
+                            - status_description
+                            - input_tokens
+                            - output_tokens
+                            - model_name
+                            - tps
+                            additionalProperties: true
+                      required:
+                      - trace
+                      - stats
+                      - spans
+                      additionalProperties: true
+                  stats:
+                    type: object
+                    properties:
+                      first_seen_at:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                      last_seen_at:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                      occurrence_count:
+                        type: number
+                      trace_count:
+                        type: number
+                    required:
+                    - first_seen_at
+                    - last_seen_at
+                    - occurrence_count
+                    - trace_count
+                    additionalProperties: false
+                required:
+                - issue
+                - occurrences
+                - traces
+                - stats
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /issues/{issue_id}/markdown:
+    get:
+      operationId: get_issue_markdown
+      tags:
+      - Issues
+      summary: Get issue markdown
+      description: Build markdown for an issue.
+      parameters:
+      - name: issue_id
+        in: path
+        required: true
+        description: Issue ID.
+        schema:
+          type: string
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Issue markdown
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  markdown:
+                    type: string
+                required:
+                - markdown
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

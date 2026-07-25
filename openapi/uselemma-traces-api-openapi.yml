@@ -1,0 +1,2263 @@
+openapi: 3.1.0
+info:
+  title: Lemma Platform Artifacts Traces API
+  description: Lemma Platform HTTP API for AI observability and workspace operations.
+  version: 0.1.0
+servers:
+- url: https://api.uselemma.ai
+  description: Lemma production API
+security:
+- bearerAuth: []
+tags:
+- name: Traces
+paths:
+  /traces:
+    get:
+      operationId: list_traces
+      tags:
+      - Traces
+      summary: List traces
+      description: Returns traces for a project.
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      - name: start
+        in: query
+        required: false
+        description: Start timestamp.
+        schema:
+          type: string
+      - name: end
+        in: query
+        required: false
+        description: End timestamp.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of records to return.
+        schema:
+          type: integer
+          minimum: 1
+      - name: error_only
+        in: query
+        required: false
+        description: Only return traces with errors.
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Traces list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    otel_trace_id:
+                      type: string
+                    project_id:
+                      type: string
+                    project_name:
+                      type: string
+                    service_name:
+                      type:
+                      - string
+                      - 'null'
+                    created_at:
+                      type: string
+                      format: date-time
+                    issue_extraction:
+                      type:
+                      - object
+                      - 'null'
+                      properties:
+                        status:
+                          type: string
+                          enum:
+                          - running
+                          - completed
+                          - skipped
+                          - failed
+                        reason:
+                          type:
+                          - string
+                          - 'null'
+                          enum:
+                          - issues_found
+                          - no_issues_found
+                          - no_spans
+                          - unsupported_trace
+                          - error
+                          - null
+                        issue_count:
+                          type:
+                          - number
+                          - 'null'
+                        occurrence_count:
+                          type:
+                          - number
+                          - 'null'
+                        completed_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        error_message:
+                          type:
+                          - string
+                          - 'null'
+                      required:
+                      - status
+                      - reason
+                      - issue_count
+                      - occurrence_count
+                      - completed_at
+                      additionalProperties: false
+                  required:
+                  - id
+                  - otel_trace_id
+                  - project_id
+                  - service_name
+                  - created_at
+                  - issue_extraction
+                  additionalProperties: true
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /traces/dashboard:
+    get:
+      operationId: list_dashboard_traces
+      tags:
+      - Traces
+      summary: List dashboard traces
+      description: Returns dashboard-ready traces for a project.
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of records to return.
+        schema:
+          type: integer
+          minimum: 1
+      - name: cursor
+        in: query
+        required: false
+        description: Pagination cursor.
+        schema:
+          type: string
+      - name: agent_name
+        in: query
+        required: false
+        description: Agent name filter.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        description: Sort order.
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        description: failures (span errors), flagged (issue occurrences), or clean.
+        schema:
+          type: string
+      - name: min_spans
+        in: query
+        required: false
+        description: Minimum span count.
+        schema:
+          type: string
+      - name: max_spans
+        in: query
+        required: false
+        description: Maximum span count.
+        schema:
+          type: string
+      - name: min_duration_ms
+        in: query
+        required: false
+        description: Minimum trace duration (ms).
+        schema:
+          type: string
+      - name: max_duration_ms
+        in: query
+        required: false
+        description: Maximum trace duration (ms).
+        schema:
+          type: string
+      - name: min_tokens
+        in: query
+        required: false
+        description: Minimum total (input + output) tokens.
+        schema:
+          type: string
+      - name: min_thread_traces
+        in: query
+        required: false
+        description: Minimum number of traces in the session/thread.
+        schema:
+          type: string
+      - name: max_thread_traces
+        in: query
+        required: false
+        description: Maximum number of traces in the session/thread.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Dashboard traces
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        otel_trace_id:
+                          type: string
+                        project_id:
+                          type: string
+                        service_name:
+                          type:
+                          - string
+                          - 'null'
+                        agent_name:
+                          type:
+                          - string
+                          - 'null'
+                        thread_id:
+                          type:
+                          - string
+                          - 'null'
+                        thread_trace_count:
+                          type:
+                          - number
+                          - 'null'
+                        agent_input:
+                          type: 'null'
+                        agent_input_display:
+                          type:
+                          - string
+                          - 'null'
+                        agent_output:
+                          type: 'null'
+                        has_error:
+                          type: boolean
+                        has_occurrences:
+                          type: boolean
+                        span_count:
+                          type: number
+                        total_duration_ms:
+                          type:
+                          - number
+                          - 'null'
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                        issue_extraction:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            status:
+                              type: string
+                              enum:
+                              - running
+                              - completed
+                              - skipped
+                              - failed
+                            reason:
+                              type:
+                              - string
+                              - 'null'
+                              enum:
+                              - issues_found
+                              - no_issues_found
+                              - no_spans
+                              - unsupported_trace
+                              - error
+                              - null
+                            issue_count:
+                              type:
+                              - number
+                              - 'null'
+                            occurrence_count:
+                              type:
+                              - number
+                              - 'null'
+                            completed_at:
+                              type:
+                              - string
+                              - 'null'
+                              format: date-time
+                            error_message:
+                              type:
+                              - string
+                              - 'null'
+                          required:
+                          - status
+                          - reason
+                          - issue_count
+                          - occurrence_count
+                          - completed_at
+                          additionalProperties: false
+                      required:
+                      - id
+                      - otel_trace_id
+                      - project_id
+                      - service_name
+                      - agent_name
+                      - thread_id
+                      - thread_trace_count
+                      - agent_input_display
+                      - has_error
+                      - has_occurrences
+                      - span_count
+                      - total_duration_ms
+                      - created_at
+                      - updated_at
+                      - issue_extraction
+                      additionalProperties: false
+                  total:
+                    type: number
+                  next_cursor:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      created_at:
+                        type: string
+                      id:
+                        type: string
+                      span_count:
+                        type: number
+                      total_duration_ms:
+                        type:
+                        - number
+                        - 'null'
+                    required:
+                    - created_at
+                    - id
+                    additionalProperties: false
+                required:
+                - data
+                - total
+                - next_cursor
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /traces/search:
+    get:
+      operationId: search_traces
+      tags:
+      - Traces
+      summary: Search traces
+      description: Search traces with structural and behavioral filters.
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      - name: query
+        in: query
+        required: false
+        description: Search query.
+        schema:
+          type: string
+      - name: tool_name
+        in: query
+        required: false
+        description: Tool name filter.
+        schema:
+          type: string
+      - name: model
+        in: query
+        required: false
+        description: Model filter.
+        schema:
+          type: string
+      - name: agent_name
+        in: query
+        required: false
+        description: Agent name filter.
+        schema:
+          type: string
+      - name: status
+        in: query
+        required: false
+        description: Dashboard status filter.
+        schema:
+          type: string
+      - name: error_only
+        in: query
+        required: false
+        description: Only return traces with errors.
+        schema:
+          type: boolean
+      - name: start
+        in: query
+        required: false
+        description: Start timestamp.
+        schema:
+          type: string
+      - name: end
+        in: query
+        required: false
+        description: End timestamp.
+        schema:
+          type: string
+      - name: min_spans
+        in: query
+        required: false
+        description: Minimum span count.
+        schema:
+          type: string
+      - name: max_spans
+        in: query
+        required: false
+        description: Maximum span count.
+        schema:
+          type: string
+      - name: min_duration_ms
+        in: query
+        required: false
+        description: Minimum trace duration (ms).
+        schema:
+          type: string
+      - name: max_duration_ms
+        in: query
+        required: false
+        description: Maximum trace duration (ms).
+        schema:
+          type: string
+      - name: min_tokens
+        in: query
+        required: false
+        description: Minimum total token count.
+        schema:
+          type: string
+      - name: min_thread_traces
+        in: query
+        required: false
+        description: Minimum thread trace count.
+        schema:
+          type: string
+      - name: max_thread_traces
+        in: query
+        required: false
+        description: Maximum thread trace count.
+        schema:
+          type: string
+      - name: attribute_filters
+        in: query
+        required: false
+        description: JSON-serialized span attribute filters.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of records to return.
+        schema:
+          type: integer
+          minimum: 1
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    otel_trace_id:
+                      type: string
+                    project_id:
+                      type: string
+                    service_name:
+                      type:
+                      - string
+                      - 'null'
+                    created_at:
+                      type: string
+                      format: date-time
+                    issue_extraction:
+                      type:
+                      - object
+                      - 'null'
+                      properties:
+                        status:
+                          type: string
+                          enum:
+                          - running
+                          - completed
+                          - skipped
+                          - failed
+                        reason:
+                          type:
+                          - string
+                          - 'null'
+                          enum:
+                          - issues_found
+                          - no_issues_found
+                          - no_spans
+                          - unsupported_trace
+                          - error
+                          - null
+                        issue_count:
+                          type:
+                          - number
+                          - 'null'
+                        occurrence_count:
+                          type:
+                          - number
+                          - 'null'
+                        completed_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        error_message:
+                          type:
+                          - string
+                          - 'null'
+                      required:
+                      - status
+                      - reason
+                      - issue_count
+                      - occurrence_count
+                      - completed_at
+                      additionalProperties: false
+                  required:
+                  - id
+                  - otel_trace_id
+                  - project_id
+                  - service_name
+                  - created_at
+                  - issue_extraction
+                  additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /traces/semantic-search:
+    get:
+      operationId: semantic_search_traces
+      tags:
+      - Traces
+      summary: Semantic search traces
+      description: Search traces by semantic similarity over embedded trace summaries.
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      - name: query
+        in: query
+        required: false
+        description: Natural-language semantic search query.
+        schema:
+          type: string
+      - name: tool_name
+        in: query
+        required: false
+        description: Tool name filter.
+        schema:
+          type: string
+      - name: model
+        in: query
+        required: false
+        description: Model filter.
+        schema:
+          type: string
+      - name: error_only
+        in: query
+        required: false
+        description: Only return traces with errors.
+        schema:
+          type: boolean
+      - name: start
+        in: query
+        required: false
+        description: Start timestamp.
+        schema:
+          type: string
+      - name: end
+        in: query
+        required: false
+        description: End timestamp.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of records to return.
+        schema:
+          type: integer
+          minimum: 1
+      responses:
+        '200':
+          description: Semantic search results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    otel_trace_id:
+                      type: string
+                    project_id:
+                      type: string
+                    service_name:
+                      type:
+                      - string
+                      - 'null'
+                    created_at:
+                      type: string
+                      format: date-time
+                    issue_extraction:
+                      type:
+                      - object
+                      - 'null'
+                      properties:
+                        status:
+                          type: string
+                          enum:
+                          - running
+                          - completed
+                          - skipped
+                          - failed
+                        reason:
+                          type:
+                          - string
+                          - 'null'
+                          enum:
+                          - issues_found
+                          - no_issues_found
+                          - no_spans
+                          - unsupported_trace
+                          - error
+                          - null
+                        issue_count:
+                          type:
+                          - number
+                          - 'null'
+                        occurrence_count:
+                          type:
+                          - number
+                          - 'null'
+                        completed_at:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                        error_message:
+                          type:
+                          - string
+                          - 'null'
+                      required:
+                      - status
+                      - reason
+                      - issue_count
+                      - occurrence_count
+                      - completed_at
+                      additionalProperties: false
+                    summary:
+                      type: string
+                    similarity:
+                      type: number
+                  required:
+                  - id
+                  - otel_trace_id
+                  - project_id
+                  - service_name
+                  - created_at
+                  - issue_extraction
+                  - summary
+                  - similarity
+                  additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /traces/agent-names:
+    get:
+      operationId: list_trace_agent_names
+      tags:
+      - Traces
+      summary: List trace agent names
+      description: Returns agent names seen in project traces.
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Agent names
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  agent_names:
+                    type: array
+                    items:
+                      type: string
+                required:
+                - agent_names
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /traces/has-ready:
+    get:
+      operationId: has_ready_traces
+      tags:
+      - Traces
+      summary: Check ready traces
+      description: Returns whether a project has ready traces.
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ready traces flag
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  has_ready_traces:
+                    type: boolean
+                required:
+                - has_ready_traces
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /traces/ingest-status:
+    get:
+      operationId: get_ingest_status
+      tags:
+      - Traces
+      summary: Check per-trace ingest status
+      description: Returns enqueued (Redis index), ingested (ClickHouse traces row), ready (trace_stats), or not_found for a specific otel_trace_id.
+      parameters:
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      - name: otel_trace_id
+        in: query
+        required: true
+        description: OTel / SDK trace id to look up.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Ingest status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  project_id:
+                    type: string
+                  otel_trace_id:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                    - enqueued
+                    - ingested
+                    - ready
+                    - not_found
+                required:
+                - project_id
+                - otel_trace_id
+                - status
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /traces/bulk-delete:
+    post:
+      operationId: delete_bulk_traces
+      tags:
+      - Traces
+      summary: Bulk delete traces
+      description: Delete multiple traces for a project.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - project_id
+              - trace_ids
+              properties:
+                project_id:
+                  type: string
+                trace_ids:
+                  type: array
+                  items:
+                    type: string
+                traceIds:
+                  type: array
+                  items:
+                    type: string
+              additionalProperties: false
+      responses:
+        '204':
+          description: Traces deleted
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /traces/agent-names-by-ids:
+    post:
+      operationId: get_trace_agent_names_by_ids
+      tags:
+      - Traces
+      summary: Get agent names by trace ids
+      description: Returns a map of trace id to agent name (from ClickHouse trace_stats).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - project_id
+              - trace_ids
+              properties:
+                project_id:
+                  type: string
+                trace_ids:
+                  type: array
+                  items:
+                    type: string
+              additionalProperties: false
+      responses:
+        '200':
+          description: Agent names
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  agent_names:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        trace_id:
+                          type: string
+                        agent_name:
+                          type:
+                          - string
+                          - 'null'
+                      required:
+                      - trace_id
+                      - agent_name
+                      additionalProperties: false
+                required:
+                - agent_names
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /traces/by-run-id:
+    get:
+      operationId: get_trace_by_run_id
+      tags:
+      - Traces
+      summary: Get trace by run id
+      description: Resolves a trace from an agent run id.
+      parameters:
+      - name: run_id
+        in: query
+        required: false
+        description: Agent run id.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Trace
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  project_id:
+                    type: string
+                  service_name:
+                    type:
+                    - string
+                    - 'null'
+                  created_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                  updated_at:
+                    type:
+                    - string
+                    - 'null'
+                    format: date-time
+                  otel_trace_id:
+                    type: string
+                  ready:
+                    type: boolean
+                required:
+                - id
+                - project_id
+                - service_name
+                - created_at
+                - updated_at
+                - otel_trace_id
+                - ready
+                additionalProperties: true
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /traces/{trace_id}/context:
+    get:
+      operationId: get_trace_context
+      tags:
+      - Traces
+      summary: Get trace context bundle
+      description: Returns the trace row, trace_stats row, ordered spans, and issue occurrences for chat/agent context.
+      parameters:
+      - name: trace_id
+        in: path
+        required: true
+        description: Trace ID.
+        schema:
+          type: string
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Trace context
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  trace:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      project_id:
+                        type: string
+                      service_name:
+                        type:
+                        - string
+                        - 'null'
+                      created_at:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                      updated_at:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                      otel_trace_id:
+                        type: string
+                      ready:
+                        type: boolean
+                    required:
+                    - id
+                    - project_id
+                    - service_name
+                    - created_at
+                    - updated_at
+                    - otel_trace_id
+                    - ready
+                    additionalProperties: true
+                  stats:
+                    type:
+                    - object
+                    - 'null'
+                    additionalProperties: {}
+                  spans:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        otel_span_id:
+                          type: string
+                        parent_otel_span_id:
+                          type:
+                          - string
+                          - 'null'
+                        name:
+                          type: string
+                        kind:
+                          type:
+                          - string
+                          - 'null'
+                        start_time_ns:
+                          type:
+                          - string
+                          - 'null'
+                        end_time_ns:
+                          type:
+                          - string
+                          - 'null'
+                        duration_ms:
+                          type:
+                          - number
+                          - 'null'
+                        status_code:
+                          type:
+                          - string
+                          - 'null'
+                        status_description:
+                          type:
+                          - string
+                          - 'null'
+                        input_tokens:
+                          type:
+                          - number
+                          - 'null'
+                        output_tokens:
+                          type:
+                          - number
+                          - 'null'
+                        model_name:
+                          type:
+                          - string
+                          - 'null'
+                        tps:
+                          type:
+                          - number
+                          - 'null'
+                        attributes:
+                          type: object
+                          additionalProperties: {}
+                        events: {}
+                      required:
+                      - id
+                      - otel_span_id
+                      - parent_otel_span_id
+                      - name
+                      - kind
+                      - start_time_ns
+                      - end_time_ns
+                      - duration_ms
+                      - status_code
+                      - status_description
+                      - input_tokens
+                      - output_tokens
+                      - model_name
+                      - tps
+                      additionalProperties: true
+                  issue_occurrences:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        trace_id:
+                          type: string
+                        issue_id:
+                          type:
+                          - string
+                          - 'null'
+                        title:
+                          type: string
+                        rationale:
+                          type: string
+                        source_span_ids:
+                          type: array
+                          items:
+                            type: string
+                        evidence_span_ids:
+                          type: array
+                          items:
+                            type: string
+                        citations: {}
+                        created_at:
+                          type: string
+                        issue:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                            status:
+                              type: string
+                            category:
+                              type:
+                              - string
+                              - 'null'
+                            agent_name:
+                              type:
+                              - string
+                              - 'null'
+                          required:
+                          - id
+                          - name
+                          - status
+                          - category
+                          - agent_name
+                        issue_name:
+                          type: string
+                        issue_category:
+                          type:
+                          - string
+                          - 'null'
+                      required:
+                      - id
+                      - title
+                      - rationale
+                      - source_span_ids
+                      - evidence_span_ids
+                      - created_at
+                      additionalProperties: true
+                  issue_extraction:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      status:
+                        type: string
+                        enum:
+                        - running
+                        - completed
+                        - skipped
+                        - failed
+                      reason:
+                        type:
+                        - string
+                        - 'null'
+                        enum:
+                        - issues_found
+                        - no_issues_found
+                        - no_spans
+                        - unsupported_trace
+                        - error
+                        - null
+                      issue_count:
+                        type:
+                        - number
+                        - 'null'
+                      occurrence_count:
+                        type:
+                        - number
+                        - 'null'
+                      completed_at:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                      error_message:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - status
+                    - reason
+                    - issue_count
+                    - occurrence_count
+                    - completed_at
+                    additionalProperties: false
+                required:
+                - trace
+                - stats
+                - spans
+                - issue_occurrences
+                - issue_extraction
+                additionalProperties: true
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /traces/{trace_id}:
+    get:
+      operationId: get_trace
+      tags:
+      - Traces
+      summary: Get trace
+      description: Loads a single trace with spans and stats.
+      responses:
+        '200':
+          description: Trace details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  otel_trace_id:
+                    type: string
+                  project_id:
+                    type: string
+                  project_name:
+                    type: string
+                  service_name:
+                    type:
+                    - string
+                    - 'null'
+                  agent_name:
+                    type:
+                    - string
+                    - 'null'
+                  thread_id:
+                    type:
+                    - string
+                    - 'null'
+                  thread_trace_count:
+                    type:
+                    - number
+                    - 'null'
+                  agent_input:
+                    type: 'null'
+                  agent_input_display:
+                    type:
+                    - string
+                    - 'null'
+                  agent_output:
+                    type: 'null'
+                  has_error:
+                    type: boolean
+                  total_duration_ms:
+                    type:
+                    - number
+                    - 'null'
+                  created_at:
+                    type: string
+                    format: date-time
+                  updated_at:
+                    type: string
+                  spans:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        otel_span_id:
+                          type: string
+                        parent_otel_span_id:
+                          type:
+                          - string
+                          - 'null'
+                        name:
+                          type: string
+                        kind:
+                          type:
+                          - string
+                          - 'null'
+                        start_time_ns:
+                          type:
+                          - string
+                          - 'null'
+                        end_time_ns:
+                          type:
+                          - string
+                          - 'null'
+                        duration_ms:
+                          type:
+                          - number
+                          - 'null'
+                        status_code:
+                          type:
+                          - string
+                          - 'null'
+                        status_description:
+                          type:
+                          - string
+                          - 'null'
+                        input_tokens:
+                          type:
+                          - number
+                          - 'null'
+                        output_tokens:
+                          type:
+                          - number
+                          - 'null'
+                        model_name:
+                          type:
+                          - string
+                          - 'null'
+                        tps:
+                          type:
+                          - number
+                          - 'null'
+                        attributes:
+                          type: object
+                          additionalProperties: {}
+                        events: {}
+                      required:
+                      - id
+                      - otel_span_id
+                      - parent_otel_span_id
+                      - name
+                      - kind
+                      - start_time_ns
+                      - end_time_ns
+                      - duration_ms
+                      - status_code
+                      - status_description
+                      - input_tokens
+                      - output_tokens
+                      - model_name
+                      - tps
+                      additionalProperties: true
+                  stats:
+                    type: object
+                    properties:
+                      span_count:
+                        type: number
+                      total_tokens:
+                        type:
+                        - number
+                        - 'null'
+                      total_duration_ms:
+                        type:
+                        - number
+                        - 'null'
+                      error_count:
+                        type: number
+                      tool_calls:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            otel_span_id:
+                              type: string
+                            status:
+                              type:
+                              - string
+                              - 'null'
+                          required:
+                          - name
+                          - otel_span_id
+                          - status
+                          additionalProperties: true
+                      models_used:
+                        type: array
+                        items:
+                          type: string
+                    required:
+                    - span_count
+                    - total_tokens
+                    - total_duration_ms
+                    - error_count
+                    - tool_calls
+                    - models_used
+                    additionalProperties: true
+                  issue_extraction:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      status:
+                        type: string
+                        enum:
+                        - running
+                        - completed
+                        - skipped
+                        - failed
+                      reason:
+                        type:
+                        - string
+                        - 'null'
+                        enum:
+                        - issues_found
+                        - no_issues_found
+                        - no_spans
+                        - unsupported_trace
+                        - error
+                        - null
+                      issue_count:
+                        type:
+                        - number
+                        - 'null'
+                      occurrence_count:
+                        type:
+                        - number
+                        - 'null'
+                      completed_at:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                      error_message:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - status
+                    - reason
+                    - issue_count
+                    - occurrence_count
+                    - completed_at
+                    additionalProperties: false
+                required:
+                - id
+                - otel_trace_id
+                - project_id
+                - service_name
+                - agent_name
+                - thread_id
+                - thread_trace_count
+                - agent_input_display
+                - has_error
+                - total_duration_ms
+                - created_at
+                - updated_at
+                - spans
+                - stats
+                - issue_extraction
+                additionalProperties: true
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: trace_id
+        required: true
+    delete:
+      operationId: delete_trace
+      tags:
+      - Traces
+      summary: Delete trace
+      description: Delete a trace for a project.
+      parameters:
+      - name: trace_id
+        in: path
+        required: true
+        description: Trace ID.
+        schema:
+          type: string
+      - name: project_id
+        in: query
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Trace deleted
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+  /traces/{trace_id}/spans:
+    get:
+      operationId: list_trace_spans
+      tags:
+      - Traces
+      summary: List trace spans
+      description: Returns spans for a ready trace.
+      responses:
+        '200':
+          description: Trace spans
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    otel_span_id:
+                      type: string
+                    parent_otel_span_id:
+                      type:
+                      - string
+                      - 'null'
+                    name:
+                      type: string
+                    kind:
+                      type:
+                      - string
+                      - 'null'
+                    start_time_ns:
+                      type:
+                      - string
+                      - 'null'
+                    end_time_ns:
+                      type:
+                      - string
+                      - 'null'
+                    duration_ms:
+                      type:
+                      - number
+                      - 'null'
+                    status_code:
+                      type:
+                      - string
+                      - 'null'
+                    status_description:
+                      type:
+                      - string
+                      - 'null'
+                    input_tokens:
+                      type:
+                      - number
+                      - 'null'
+                    output_tokens:
+                      type:
+                      - number
+                      - 'null'
+                    model_name:
+                      type:
+                      - string
+                      - 'null'
+                    tps:
+                      type:
+                      - number
+                      - 'null'
+                    attributes:
+                      type: object
+                      additionalProperties: {}
+                    events: {}
+                  required:
+                  - id
+                  - otel_span_id
+                  - parent_otel_span_id
+                  - name
+                  - kind
+                  - start_time_ns
+                  - end_time_ns
+                  - duration_ms
+                  - status_code
+                  - status_description
+                  - input_tokens
+                  - output_tokens
+                  - model_name
+                  - tps
+                  additionalProperties: true
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: trace_id
+        required: true
+  /traces/{trace_id}/thread-neighbors:
+    get:
+      operationId: get_thread_trace_neighbors
+      tags:
+      - Traces
+      summary: Get thread trace neighbors
+      description: Returns previous and next ready traces from the same thread.
+      responses:
+        '200':
+          description: Thread neighbors
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  prev_trace_id:
+                    type:
+                    - string
+                    - 'null'
+                  next_trace_id:
+                    type:
+                    - string
+                    - 'null'
+                required:
+                - prev_trace_id
+                - next_trace_id
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: trace_id
+        required: true
+  /traces/{trace_id}/thread:
+    get:
+      operationId: get_thread_traces
+      tags:
+      - Traces
+      summary: List thread traces
+      description: Returns every ready trace in the given trace's thread, enriched and ordered oldest first. Empty for standalone traces.
+      responses:
+        '200':
+          description: Thread traces
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  thread_id:
+                    type:
+                    - string
+                    - 'null'
+                  traces:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        otel_trace_id:
+                          type: string
+                        project_id:
+                          type: string
+                        service_name:
+                          type:
+                          - string
+                          - 'null'
+                        agent_name:
+                          type:
+                          - string
+                          - 'null'
+                        thread_id:
+                          type:
+                          - string
+                          - 'null'
+                        thread_trace_count:
+                          type:
+                          - number
+                          - 'null'
+                        agent_input:
+                          type: 'null'
+                        agent_input_display:
+                          type:
+                          - string
+                          - 'null'
+                        agent_output:
+                          type: 'null'
+                        has_error:
+                          type: boolean
+                        has_occurrences:
+                          type: boolean
+                        span_count:
+                          type: number
+                        total_duration_ms:
+                          type:
+                          - number
+                          - 'null'
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                      required:
+                      - id
+                      - otel_trace_id
+                      - project_id
+                      - service_name
+                      - agent_name
+                      - thread_id
+                      - thread_trace_count
+                      - agent_input_display
+                      - has_error
+                      - has_occurrences
+                      - span_count
+                      - total_duration_ms
+                      - created_at
+                      - updated_at
+                      additionalProperties: true
+                required:
+                - thread_id
+                - traces
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: trace_id
+        required: true
+  /traces/{trace_id}/issue_occurrences:
+    get:
+      operationId: list_trace_issue_occurrences
+      tags:
+      - Traces
+      summary: List trace issue occurrences
+      description: Returns issue occurrence evidence linked to a ready trace.
+      responses:
+        '200':
+          description: Issue occurrences
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  issue_occurrences:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        trace_id:
+                          type: string
+                        issue_id:
+                          type:
+                          - string
+                          - 'null'
+                        title:
+                          type: string
+                        rationale:
+                          type: string
+                        source_span_ids:
+                          type: array
+                          items:
+                            type: string
+                        evidence_span_ids:
+                          type: array
+                          items:
+                            type: string
+                        citations: {}
+                        created_at:
+                          type: string
+                        issue:
+                          type:
+                          - object
+                          - 'null'
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                            status:
+                              type: string
+                            category:
+                              type:
+                              - string
+                              - 'null'
+                            agent_name:
+                              type:
+                              - string
+                              - 'null'
+                          required:
+                          - id
+                          - name
+                          - status
+                          - category
+                          - agent_name
+                        issue_name:
+                          type: string
+                        issue_category:
+                          type:
+                          - string
+                          - 'null'
+                      required:
+                      - id
+                      - title
+                      - rationale
+                      - source_span_ids
+                      - evidence_span_ids
+                      - created_at
+                      additionalProperties: true
+                required:
+                - issue_occurrences
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+      parameters:
+      - schema:
+          type: string
+        in: path
+        name: trace_id
+        required: true
+  /projects/{project_id}/thread-issue-summaries:
+    post:
+      operationId: list_thread_issue_summaries
+      tags:
+      - Traces
+      summary: List thread issue summaries
+      description: Batch-fetch issue extraction completion and destin issues for thread_ids (join key for eval trial_hash).
+      parameters:
+      - name: project_id
+        in: path
+        required: true
+        description: Project ID.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - thread_ids
+              properties:
+                thread_ids:
+                  type: array
+                  items:
+                    type: string
+              additionalProperties: false
+      responses:
+        '200':
+          description: Thread issue summaries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        thread_id:
+                          type: string
+                        trace_ids:
+                          type: array
+                          items:
+                            type: string
+                        extraction:
+                          type: object
+                          properties:
+                            completed:
+                              type: boolean
+                            statuses:
+                              type: array
+                              items:
+                                type: string
+                                enum:
+                                - running
+                                - completed
+                                - skipped
+                                - failed
+                            reasons:
+                              type: array
+                              items:
+                                type: string
+                                enum:
+                                - issues_found
+                                - no_issues_found
+                                - no_spans
+                                - unsupported_trace
+                                - error
+                          required:
+                          - completed
+                          - statuses
+                          - reasons
+                          additionalProperties: false
+                        issues:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              issue_id:
+                                type:
+                                - string
+                                - 'null'
+                              title:
+                                type: string
+                              category:
+                                type: string
+                              rationale:
+                                type: string
+                            required:
+                            - issue_id
+                            - title
+                            - category
+                            - rationale
+                            additionalProperties: false
+                      required:
+                      - thread_id
+                      - trace_ids
+                      - extraction
+                      - issues
+                      additionalProperties: false
+                required:
+                - result
+                additionalProperties: false
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+        '404':
+          description: Not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                required:
+                - detail
+                additionalProperties: false
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
