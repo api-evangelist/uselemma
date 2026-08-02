@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/uselemma-platform-api-openapi-original.json + https://docs.uselemma.ai
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: only securityScheme is http bearer (project API key); no oauth2 flows declared
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration absent on all hosts (404/401)
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: no application/problem+json media type anywhere in the published spec
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt 404 on uselemma.ai, www, docs, platform; 401 on api host
+  - id: openapi-3.1
+    conforms: true
+    evidence: published spec at https://api.uselemma.ai/openapi.json declares openapi 3.1.0
+  - id: opentelemetry
+    conforms: partial
+    evidence: >-
+      ingest-status endpoint keys on otel_trace_id and the docs ship a
+      dedicated "From OpenTelemetry to Lemma" migration guide
+      (https://docs.uselemma.ai/guides/migrations/opentelemetry); Lemma's own
+      trace contract is a proprietary JSON tree, not OTLP.
+  - id: webhook-hmac-signing
+    conforms: true
+    evidence: X-Lemma-Signature sha256 HMAC of raw body documented at https://docs.uselemma.ai/connections/webhooks
+  - id: idempotency
+    conforms: true
+    evidence: >-
+      trace ingest retries documented idempotent via stable span IDs
+      (https://docs.uselemma.ai/reference/trace-contract, Delivery and
+      retries); no Idempotency-Key header standard.
+  - id: pagination
+    conforms: partial
+    evidence: limit parameter on list endpoints; no cursor/page token declared in spec
+notes: >-
+  No published compliance program (SOC 2 / ISO 27001 / etc.) was verifiable —
+  trust.uselemma.ai exists but is a JavaScript app whose certification content
+  could not be read without a browser, so no Compliance pointer is emitted.

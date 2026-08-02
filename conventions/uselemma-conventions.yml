@@ -1,0 +1,56 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.uselemma.ai/reference/trace-contract + openapi/uselemma-platform-api-openapi-original.json
+description: >-
+  Cross-cutting request/response semantics of the Lemma Platform API
+  (https://api.uselemma.ai), captured from the docs trace contract and derived
+  from the published OpenAPI 3.1 spec.
+authentication:
+  style: HTTP bearer token (project API key, prefix lma_)
+  header: 'Authorization: Bearer <api-key>'
+  notes: Missing credentials return 401. Keys are created per project in platform.uselemma.ai settings and shown only once.
+  see: authentication/uselemma-authentication.yml
+idempotency:
+  supported: true
+  mechanism: client-supplied stable identifiers (not an Idempotency-Key header)
+  details: >-
+    Trace ingest (POST /traces/ingest) is retry-idempotent by contract:
+    re-sending the same payload with the same span IDs is idempotent — spans
+    whose IDs already exist are skipped, and a later successful re-delivery
+    does not restart processing. Missing trace.id or span id values are
+    generated server-side, so clients that want safe retries must supply
+    stable IDs. Documented at https://docs.uselemma.ai/reference/trace-contract
+    (Delivery and retries).
+  scope: trace ingest only; no provider-wide Idempotency-Key header is documented
+tenancy_scoping:
+  pattern: project-scoped
+  details: >-
+    Nearly every read operation requires a project_id query parameter (27 of
+    42 operations); resources belong to the authenticated tenant and 404 is
+    returned for objects outside the tenant.
+pagination:
+  style: limit-based
+  params: [limit]
+  details: >-
+    List endpoints accept a limit query parameter plus rich structural filters
+    (start/end timestamps, agent_name, error_only, min/max spans, duration,
+    tokens). No cursor or page token is declared in the published spec.
+filtering:
+  time_range: [start, end]
+  behavioral: [error_only, status, agent_name, min_spans, max_spans, min_duration_ms, max_duration_ms, min_tokens]
+error_envelope:
+  shape: JSON error responses; 400 invalid shape, 401 missing credentials, 404 not found / cross-tenant
+  format: not RFC 9457 problem+json (no application/problem+json in the spec)
+  see: errors/uselemma-problem-types.yml
+versioning:
+  scheme: none declared; spec version 0.1.0, no version segment in paths and no versioning policy published
+  see: lifecycle/uselemma-lifecycle.yml
+webhooks:
+  signature_header: X-Lemma-Signature (sha256=<hex> HMAC of raw body)
+  see: asyncapi/uselemma-webhooks.yml
+rate_limits:
+  documented: false
+  notes: No rate-limit documentation or headers are published as of 2026-07-21.
+tracing_contract:
+  rule: one agent execution = one trace; LLM calls, tool calls, and app logic are child spans
+  ingest: POST /traces/ingest returns 201; delivery is one complete payload per execution (not a merge API)

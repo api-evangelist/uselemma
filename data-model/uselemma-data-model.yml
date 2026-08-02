@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/uselemma-platform-api-openapi-original.json + https://docs.uselemma.ai/getting-started/concepts
+entities:
+  - name: Project
+    description: Tenant-owned container for traces, issues, and artifacts; unit of API-key scoping (id prefix proj_).
+  - name: Trace
+    description: One agent execution — root record with input, output/error, agent name, timing, thread/user context.
+  - name: Span
+    description: Unit of work inside a trace; typed span | generation | tool, nested via parent_id; synthetic {traceId}:root carries root fields.
+  - name: Thread
+    description: Groups the traces of a multi-turn conversation via a shared thread_id.
+  - name: Issue
+    description: Recurring problem detected across traces; carries lifecycle status and optional validation (status, confidence, evidence).
+  - name: IssueOccurrence
+    description: One piece of evidence linking an issue to a specific ready trace.
+  - name: Artifact
+    description: Project knowledge — learn-agent generated KB versions or uploaded .txt/.md files, scoped to an agent.
+  - name: Incident
+    description: Monitor-detected event delivered over webhooks (created/analyzed/resolved/dismissed) with root cause on analysis.
+relationships:
+  - {from: Project, to: Trace, type: has_many, via: project_id}
+  - {from: Project, to: Issue, type: has_many, via: project_id}
+  - {from: Project, to: Artifact, type: has_many, via: project_id}
+  - {from: Trace, to: Span, type: has_many, via: 'trace.spans[] / trace_id'}
+  - {from: Span, to: Span, type: has_many, via: 'parent_id (nesting)'}
+  - {from: Thread, to: Trace, type: has_many, via: thread_id}
+  - {from: Issue, to: IssueOccurrence, type: has_many, via: issue_id}
+  - {from: IssueOccurrence, to: Trace, type: belongs_to, via: trace_id}
+  - {from: Artifact, to: Artifact, type: has_many, via: versions (learn-agent KB versions)}
+  - {from: Incident, to: Project, type: belongs_to, via: projectId}
+id_conventions:
+  - {entity: Project, prefix: proj_}
+  - {entity: ApiKey, prefix: lma_}
+  - {entity: Trace, notes: client-supplied or server-generated; otel_trace_id also tracked for ingest status}

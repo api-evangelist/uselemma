@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: searched
+source: https://registry.npmjs.org + https://pypi.org + https://docs.uselemma.ai/tracing/instrumentation/setup
+packages:
+  - language: typescript
+    registry: npm
+    name: "@uselemma/tracing"
+    version: 7.6.0
+    url: https://www.npmjs.com/package/@uselemma/tracing
+    install: npm install @uselemma/tracing
+    description: HTTP tracing SDK for Lemma
+    repository: https://github.com/uselemma/lemma/tree/main/packages/ts/tracing
+    official: true
+  - language: typescript
+    registry: npm
+    name: "@uselemma/experiments"
+    version: 0.1.0
+    url: https://www.npmjs.com/package/@uselemma/experiments
+    install: npm install @uselemma/experiments
+    description: Experiment runner for Lemma — fetch test cases, run agents, record results
+    repository: https://github.com/uselemma/lemma
+    official: true
+  - language: python
+    registry: pypi
+    name: uselemma-tracing
+    version: 7.5.0
+    url: https://pypi.org/project/uselemma-tracing/
+    install: pip install uselemma-tracing
+    description: HTTP tracing SDK for Lemma
+    repository: https://github.com/uselemma/lemma/tree/main/packages/py/tracing
+    official: true
+notes: >-
+  All SDKs are first-party, maintained in the public monorepo
+  github.com/uselemma/lemma (MIT license). The Lemma docs setup page documents
+  npm install @uselemma/tracing and pip install uselemma-tracing as the two
+  official installation paths.

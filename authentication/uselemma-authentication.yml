@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/uselemma-platform-api-openapi-original.json
+docs: https://docs.uselemma.ai/tracing/instrumentation/setup
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/uselemma-platform-api-openapi-original.json
+  notes: >-
+    The bearer token is a project API key with prefix lma_, created in Lemma
+    project settings (platform.uselemma.ai) and shown only once at creation.
+    SDK clients read it from LEMMA_API_KEY (with LEMMA_PROJECT_ID, prefix
+    proj_, selecting the project). The same key authenticates the Platform
+    API, trace ingest, and the remote MCP server at
+    https://api.uselemma.ai/mcp (Authorization: Bearer header). Missing
+    credentials return 401; the entire api.uselemma.ai host is authenticated.

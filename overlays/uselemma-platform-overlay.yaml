@@ -1,0 +1,44 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Lemma Platform API
+  version: 1.0.0
+extends: openapi/uselemma-platform-api-openapi-original.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: uselemma
+        company: Forge AI Labs, Inc.
+        profiled: '2026-07-21'
+        artifacts:
+          authentication: authentication/uselemma-authentication.yml
+          conventions: conventions/uselemma-conventions.yml
+          errors: errors/uselemma-problem-types.yml
+          webhooks: asyncapi/uselemma-webhooks.yml
+          mcp: mcp/uselemma-mcp.yml
+          data-model: data-model/uselemma-data-model.yml
+  - target: $.info
+    update:
+      x-mcp-server:
+        url: https://api.uselemma.ai/mcp
+        transport: http
+        auth: bearer-api-key
+  - target: $.info
+    update:
+      x-webhooks:
+        events: [incident.created, incident.analyzed, incident.resolved, incident.dismissed]
+        signature_header: X-Lemma-Signature
+  - target: $.info
+    update:
+      x-idempotency:
+        ingest: re-sending the same payload with the same span IDs is idempotent (spans with existing IDs are skipped)
+  - target: $.tags
+    update:
+      - name: Projects
+        description: Tenant project management, analytics, and model scorecards
+      - name: Traces
+        description: Agent execution traces, spans, search, and semantic search
+      - name: Issues
+        description: Detected recurring problems, occurrences, status, and chat context
+      - name: Artifacts
+        description: Learn-agent knowledge-base versions and uploaded project artifacts

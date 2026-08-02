@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/uselemma-platform-api-openapi-original.json + https://docs.uselemma.ai/reference/trace-contract
+format: json
+notes: >-
+  Derived from the published OpenAPI 3.1 spec (42 operations). The API does
+  not use application/problem+json (RFC 9457); errors are plain JSON with
+  conventional status codes. The trace-contract page documents the ingest
+  error semantics (400 invalid shape, 401 missing credentials).
+problems:
+  - status: 400
+    title: Bad request / invalid shape
+    detail: >-
+      Returned by 27 operations for invalid parameters or an invalid body —
+      e.g. trace ingest payloads that are not a JSON object, missing
+      project_id (UUID), missing trace.name, unnamed spans, or duplicate span
+      IDs within a payload.
+    operations_sample: [create_project, reorder_projects, update_project, get_project_analytics, upload_project_artifact, search_traces]
+  - status: 401
+    title: Missing or invalid credentials
+    detail: >-
+      Every endpoint requires an Authorization bearer token (project API key);
+      missing credentials return 401. The whole api.uselemma.ai host answers
+      401 unauthenticated.
+    operations_sample: [all]
+  - status: 404
+    title: Not found
+    detail: >-
+      Returned by 40 operations when the resource does not exist or does not
+      belong to the authenticated tenant (projects, traces, spans, issues,
+      artifacts).
+    operations_sample: [get_project, get_trace, get_issue, get_learn_agent_artifact_version]
+success_codes:
+  - {status: 200, count: 35}
+  - {status: 201, count: 2, notes: create_project, upload_project_artifact; trace ingest also returns 201}
+  - {status: 204, count: 5, notes: deletes and reorder}

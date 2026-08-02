@@ -1,22 +1,163 @@
 aid: uselemma
-name: Uselemma
-description: Uselemma is a company surfaced as a portfolio company of y-combinator and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+name: Lemma
+description: >-
+  Lemma (uselemma.ai, Forge AI Labs, Inc., Y Combinator Fall 2025) is a
+  production monitoring and observability platform for AI agents. Teams
+  instrument agents with the Lemma tracing SDKs (TypeScript and Python) so
+  every agent execution becomes one trace with LLM generations, tool calls,
+  and app-logic spans as children; Lemma then surfaces silent semantic
+  failures, groups recurring issues with root-cause analysis, sends signed
+  incident webhooks, and exposes the whole surface — projects, traces, issues,
+  and learn-agent artifacts — through the Lemma Platform API and an official
+  remote MCP server so coding agents can pull the exact runs and errors they
+  need and fix issues in place.
 url: https://raw.githubusercontent.com/api-evangelist/uselemma/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - y-combinator
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched from stub 2026-07-21; real API provider with OpenAPI, MCP, SDKs
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://uselemma.ai/opengraph-image.png
 tags:
 - Company
-apis: []
+- Artificial Intelligence
+- AI Agents
+- Observability
+- Monitoring
+- Tracing
+- Developer Tools
+- B2B
+apis:
+- aid: uselemma:uselemma-artifacts-api
+  name: Lemma Artifacts API
+  description: The Artifacts API from Lemma — 6 operation(s) for artifacts.
+  humanURL: https://docs.uselemma.ai/api-reference
+  baseURL: https://api.uselemma.ai
+  tags:
+  - Artifacts
+  properties:
+  - type: OpenAPI
+    url: openapi/uselemma-artifacts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.uselemma.ai
+  - type: APIReference
+    url: https://docs.uselemma.ai/api-reference
+- aid: uselemma:uselemma-issues-api
+  name: Lemma Issues API
+  description: The Issues API from Lemma — 8 operation(s) for issues.
+  humanURL: https://docs.uselemma.ai/api-reference
+  baseURL: https://api.uselemma.ai
+  tags:
+  - Issues
+  properties:
+  - type: OpenAPI
+    url: openapi/uselemma-issues-api-openapi.yml
+  - type: Documentation
+    url: https://docs.uselemma.ai
+  - type: APIReference
+    url: https://docs.uselemma.ai/api-reference
+- aid: uselemma:uselemma-projects-api
+  name: Lemma Projects API
+  description: The Projects API from Lemma — 6 operation(s) for projects.
+  humanURL: https://docs.uselemma.ai/api-reference
+  baseURL: https://api.uselemma.ai
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/uselemma-projects-api-openapi.yml
+  - type: Documentation
+    url: https://docs.uselemma.ai
+  - type: APIReference
+    url: https://docs.uselemma.ai/api-reference
+- aid: uselemma:uselemma-traces-api
+  name: Lemma Traces API
+  description: The Traces API from Lemma — 17 operation(s) for traces.
+  humanURL: https://docs.uselemma.ai/api-reference
+  baseURL: https://api.uselemma.ai
+  tags:
+  - Traces
+  properties:
+  - type: OpenAPI
+    url: openapi/uselemma-traces-api-openapi.yml
+  - type: Documentation
+    url: https://docs.uselemma.ai
+  - type: APIReference
+    url: https://docs.uselemma.ai/api-reference
+common:
+- url: https://www.uselemma.ai
+  type: Website
+- url: https://docs.uselemma.ai
+  type: Documentation
+- url: https://docs.uselemma.ai/getting-started/quickstart
+  type: GettingStarted
+- url: https://www.uselemma.ai/blog
+  type: Blog
+- url: https://www.uselemma.ai/changelog
+  type: ChangeLog
+- url: changelog/uselemma-changelog.yml
+  type: ChangeLog
+- url: https://github.com/uselemma
+  type: GitHubOrganization
+- url: https://platform.uselemma.ai
+  type: Login
+- url: https://github.com/uselemma/lemma/issues
+  type: Support
+- url: https://trust.uselemma.ai/
+  type: TrustCenter
+- url: security/uselemma-trust-center.yml
+  type: TrustCenter
+- url: mcp/uselemma-mcp.yml
+  type: MCPServer
+- url: skills/_index.yml
+  type: AgentSkill
+- url: llms/uselemma-llms.txt
+  type: LLMsTxt
+- url: packages/uselemma-packages.yml
+  type: Packages
+- url: packages/uselemma-packages.yml
+  type: SDKs
+- url: asyncapi/uselemma-webhooks.yml
+  type: Webhooks
+- url: conventions/uselemma-conventions.yml
+  type: Conventions
+- url: conventions/uselemma-conventions.yml
+  type: Idempotency
+- url: errors/uselemma-problem-types.yml
+  type: ErrorCatalog
+- url: lifecycle/uselemma-lifecycle.yml
+  type: Lifecycle
+- url: conformance/uselemma-conformance.yml
+  type: Conformance
+- url: authentication/uselemma-authentication.yml
+  type: Authentication
+- url: security/uselemma-domain-security.yml
+  type: DomainSecurity
+- url: data-model/uselemma-data-model.yml
+  type: DataModel
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v1

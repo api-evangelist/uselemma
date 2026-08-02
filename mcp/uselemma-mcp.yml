@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://docs.uselemma.ai/connections/mcp
+description: >-
+  Lemma operates an official remote MCP server at https://api.uselemma.ai/mcp
+  (Streamable HTTP transport), authenticated with a project API key sent as an
+  Authorization Bearer header. It gives coding agents (Cursor, Claude Desktop,
+  Claude Code, any MCP client) direct access to the project's traces, metrics,
+  and monitors so the agent can pull the exact runs and errors it needs and fix
+  issues in place. The docs point to the Platform API reference for the full
+  tool surface; Lemma does not publish a standalone named tool list, so no
+  tools are fabricated here.
+server:
+  name: lemma
+  transport: http
+  url: https://api.uselemma.ai/mcp
+  auth: bearer-api-key
+  auth_docs: https://docs.uselemma.ai/connections/mcp
+install:
+  claude_code: >-
+    claude mcp add --transport http lemma https://api.uselemma.ai/mcp
+    --header "Authorization: Bearer <your-api-key>"
+  cursor: 'Settings > MCP Servers: {"mcpServers": {"lemma": {"url": "https://api.uselemma.ai/mcp", "headers": {"Authorization": "Bearer <your-api-key>"}}}}'
+tool_surface: >-
+  Not separately published; the MCP docs state the server exposes the Lemma
+  Platform API surface (traces, issues, projects, artifacts — see
+  openapi/uselemma-platform-api-openapi-original.json, 42 operations).

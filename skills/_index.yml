@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: searched
+source: >-
+  uselemma-lemma-tracing.md saved verbatim from the provider's public repo
+  (https://github.com/uselemma/lemma/tree/main/skills/lemma-tracing, also
+  installable via `npx skills add uselemma/lemma --skill "lemma-tracing"`).
+  The two API skills are generated from the published OpenAPI; every
+  operationId is verified verbatim in
+  openapi/uselemma-platform-api-openapi-original.json.
+skills:
+  - file: uselemma-lemma-tracing.md
+    name: Lemma tracing
+    origin: provider-published (verbatim)
+    source: https://github.com/uselemma/lemma/blob/main/skills/lemma-tracing/SKILL.md
+    api: null
+    operations: []
+    description: Integrate Lemma AI observability tracing into a codebase (SDK install, framework detection, trace-shape debugging).
+  - file: uselemma-triage-production-issues.md
+    name: Triage production issues
+    origin: generated
+    api: openapi/uselemma-platform-api-openapi-original.json
+    operations: [list_issues, get_issue, get_issue_metric_series, get_issue_chat_context, get_issue_markdown, set_issue_status]
+  - file: uselemma-debug-agent-traces.md
+    name: Debug agent traces
+    origin: generated
+    api: openapi/uselemma-platform-api-openapi-original.json
+    operations: [search_traces, semantic_search_traces, get_trace, list_trace_spans, get_thread_traces, list_trace_issue_occurrences, get_ingest_status]

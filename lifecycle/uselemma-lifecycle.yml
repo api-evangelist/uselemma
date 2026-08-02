@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.uselemma.ai/changelog + https://docs.uselemma.ai + live probes (2026-07-21)
+versioning:
+  scheme: none declared
+  current: 0.1.0 (OpenAPI info.version); SDKs version independently (npm @uselemma/tracing 7.6.0, PyPI uselemma-tracing 7.5.0)
+  docs: null
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No deprecation policy or RFC 8594 Sunset/Deprecation header support is published.
+sla:
+  url: null
+status_page: null
+status_page_probe:
+  - {url: 'https://status.uselemma.ai/', status: 404}
+changelog:
+  url: https://www.uselemma.ai/changelog
+  status: live-empty
+  notes: >-
+    Changelog page is live ("Every release, documented") but currently shows
+    "Coming soon — the first release notes will land here shortly."
+deprecated_operations: []
+notes: >-
+  Early-stage provider (YC Fall 2025; company Forge AI Labs, Inc.). No status
+  page, SLA, or deprecation policy found on any host; recorded as honest
+  absence, not omission.

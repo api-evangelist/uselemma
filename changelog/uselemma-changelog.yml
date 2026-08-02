@@ -1,0 +1,14 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.uselemma.ai/changelog
+url: https://www.uselemma.ai/changelog
+scheme: none published yet
+current_version: null
+entries: []
+notes: >-
+  Lemma publishes a dedicated changelog page ("Changelog — every release,
+  documented") linked from the site navigation, but as of 2026-07-21 it reads
+  "Coming soon: the first release notes will land here shortly" and contains
+  zero dated entries. Captured honestly as a live-but-empty changelog; re-run
+  this artifact once entries land. SDK release cadence is visible meanwhile on
+  npm (@uselemma/tracing, 7.x) and PyPI (uselemma-tracing).

@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.uselemma.ai/connections/webhooks
+type: Webhooks
+description: >-
+  Lemma delivers signed HTTP POST webhooks when incidents are detected,
+  analyzed, or resolved. No AsyncAPI document is published; this artifact
+  captures the documented webhook catalog verbatim. Endpoints are managed in
+  the dashboard under Settings -> Developer -> Webhooks, which also exposes a
+  full delivery log and a synthetic test-ping button.
+events:
+  - name: incident.created
+    fires_when: A new incident has been detected by a monitor
+  - name: incident.analyzed
+    fires_when: RCA is complete — includes root cause and suggested fix
+  - name: incident.resolved
+    fires_when: The incident has been marked as resolved
+  - name: incident.dismissed
+    fires_when: The incident has been dismissed
+security:
+  signature_header: X-Lemma-Signature
+  scheme: 'sha256=<hex> HMAC-SHA256 of the raw request body with the endpoint signing secret'
+  signing_secret: shown once at endpoint creation; regenerable from the endpoint edit dialog
+  https_only: true
+delivery:
+  success: 2xx response within 10 seconds
+  retries: exponential backoff on failure
+  delivery_log: Settings -> Developer -> Webhooks -> Delivery log (request bodies, response codes, latency)
+  test: Send test ping button sends a synthetic incident.analyzed payload
+payload_envelope:
+  fields: [event, timestamp, projectId, incident]
+  incident_fields: [id, status, metricName, rootCause, createdAt]
+  notes: incident is present on all event types; rootCause is only populated on incident.analyzed
+example:
+  event: incident.analyzed
+  timestamp: '2025-04-07T12:00:00.000Z'
+  projectId: 39e9c46a-...
+  incident:
+    id: abc123
+    status: unresolved
+    metricName: tool_call_success_rate
+    rootCause: OpenAI tool call parsing fails when response contains nested JSON strings
+    createdAt: '2025-04-07T11:58:00.000Z'
