@@ -101,6 +101,8 @@ apis:
   - type: APIReference
     url: https://docs.uselemma.ai/api-reference
 common:
+- type: Overlay
+  url: overlays/uselemma-platform-overlay.yaml
 - url: https://www.uselemma.ai
   type: Website
 - url: https://docs.uselemma.ai
