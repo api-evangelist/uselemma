@@ -1,0 +1,215 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemma Platform Artifacts API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Artifacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List project artifacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/projects/:project_id/artifacts",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "query",
+                "description": "Optional agent name used to scope artifacts. Omit to select the most recently updated artifact agent."
+              }
+            ]
+          },
+          "docs": "Returns learn-agent and uploaded artifacts for a project, scoped to the selected agent."
+        },
+        {
+          "info": {
+            "name": "Upload project artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.uselemma.ai/projects/:project_id/artifacts",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "query",
+                "description": "Optional agent name to attach to this uploaded artifact."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload an agent-scoped .txt or .md file (text/plain or text/markdown)."
+        },
+        {
+          "info": {
+            "name": "List learn-agent artifact versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/projects/:project_id/artifacts/versions",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "query",
+                "description": "Optional agent name used to scope learn-agent artifacts. Empty selects untagged artifacts."
+              }
+            ]
+          },
+          "docs": "Returns learn-agent KB version metadata for a project and agent, newest first. The response omits artifact content."
+        },
+        {
+          "info": {
+            "name": "Get learn-agent artifact version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/projects/:project_id/artifacts/versions/:version",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Learn-agent artifact version"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "query",
+                "description": "Optional agent name used to scope learn-agent artifacts. Empty selects untagged artifacts."
+              }
+            ]
+          },
+          "docs": "Returns the learn-agent KB content and metadata for a specific project, agent, and version."
+        },
+        {
+          "info": {
+            "name": "Regenerate project artifacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.uselemma.ai/projects/:project_id/artifacts/regenerate",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "query",
+                "description": "Optional agent name used to scope the regenerated learn-agent artifacts."
+              }
+            ]
+          },
+          "docs": "Starts the learn-agent workflow for a tenant-owned project and optional agent. Duplicate project+agent triggers within the dedupe window return the same workflow_id; clients should poll list_project_artifacts for a new latest_version or learn_agent_artifact version to observe completion."
+        },
+        {
+          "info": {
+            "name": "Get uploaded project artifact content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/projects/:project_id/artifacts/:artifact_id/content",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "artifact_id",
+                "value": "",
+                "type": "path",
+                "description": "Uploaded artifact ID"
+              }
+            ]
+          },
+          "docs": "Returns stored text content and metadata for one uploaded text artifact."
+        },
+        {
+          "info": {
+            "name": "Delete project artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.uselemma.ai/projects/:project_id/artifacts/:artifact_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "artifact_id",
+                "value": "",
+                "type": "path",
+                "description": "Uploaded artifact ID"
+              }
+            ]
+          },
+          "docs": "Deletes one uploaded project artifact."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

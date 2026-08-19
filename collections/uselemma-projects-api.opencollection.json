@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemma Platform Artifacts Projects API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/projects"
+          },
+          "docs": "Returns projects available to the authenticated tenant."
+        },
+        {
+          "info": {
+            "name": "Create project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.uselemma.ai/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a project for the authenticated tenant."
+        },
+        {
+          "info": {
+            "name": "Reorder projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.uselemma.ai/projects/reorder",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Persist project ordering for the authenticated tenant."
+        },
+        {
+          "info": {
+            "name": "Get project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/projects/:project_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID."
+              }
+            ]
+          },
+          "docs": "Returns a single project if it belongs to the authenticated tenant."
+        },
+        {
+          "info": {
+            "name": "Update project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.uselemma.ai/projects/:project_id",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a project for the authenticated tenant."
+        },
+        {
+          "info": {
+            "name": "Get project metric event counts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/projects/:project_id/metric-event-counts",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID."
+              }
+            ]
+          },
+          "docs": "Returns metric event counts for a project."
+        },
+        {
+          "info": {
+            "name": "Get project analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/projects/:project_id/analytics",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID."
+              }
+            ]
+          },
+          "docs": "Returns request/error/speed/token timeseries + top models for a project over a time range."
+        },
+        {
+          "info": {
+            "name": "Get project model scorecard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/projects/:project_id/model-scorecard",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID."
+              }
+            ]
+          },
+          "docs": "Returns per-model trace/token/speed aggregates for a project."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

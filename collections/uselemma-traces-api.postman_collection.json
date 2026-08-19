@@ -1,0 +1,4138 @@
+{
+  "item": [
+    {
+      "id": "bf6bd30f-9da6-45e9-b8f5-e62489ffb765",
+      "name": "Traces",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "910e3493-bb55-422b-b17d-70a1b5983582",
+          "name": "List traces",
+          "request": {
+            "name": "List traces",
+            "description": {
+              "content": "Returns traces for a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "Start timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "End timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "error_only",
+                  "value": "<boolean>",
+                  "description": "Only return traces with errors."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7f2f0e2-0554-425b-9f26-2818fa5beafc",
+              "name": "Traces list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "error_only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"otel_trace_id\": \"string\",\n    \"project_id\": \"string\",\n    \"service_name\": \"string\",\n    \"created_at\": \"1953-06-29T04:07:50.370Z\",\n    \"issue_extraction\": {\n      \"status\": \"skipped\",\n      \"reason\": \"no_issues_found\",\n      \"issue_count\": 8352.486265551654,\n      \"occurrence_count\": 116.75315338314674,\n      \"completed_at\": \"2016-12-28T12:15:16.777Z\",\n      \"error_message\": \"string\"\n    },\n    \"project_name\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"otel_trace_id\": \"string\",\n    \"project_id\": \"string\",\n    \"service_name\": \"string\",\n    \"created_at\": \"1983-03-27T05:33:01.522Z\",\n    \"issue_extraction\": {\n      \"status\": \"failed\",\n      \"reason\": \"no_issues_found\",\n      \"issue_count\": 9272.772810066896,\n      \"occurrence_count\": 466.3974174080332,\n      \"completed_at\": \"2019-10-03T21:31:21.106Z\",\n      \"error_message\": \"string\"\n    },\n    \"project_name\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e018752a-dafa-42f6-a714-6be40fb1315b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "error_only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "895a905e-f3f2-4b4f-916d-9646b99f81c1",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "error_only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e990e87-2476-4662-b61b-3ed7c726c09b",
+          "name": "List dashboard traces",
+          "request": {
+            "name": "List dashboard traces",
+            "description": {
+              "content": "Returns dashboard-ready traces for a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                "dashboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "Pagination cursor."
+                },
+                {
+                  "disabled": false,
+                  "key": "agent_name",
+                  "value": "<string>",
+                  "description": "Agent name filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort order."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "failures (span errors), flagged (issue occurrences), or clean."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_spans",
+                  "value": "<string>",
+                  "description": "Minimum span count."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_spans",
+                  "value": "<string>",
+                  "description": "Maximum span count."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_duration_ms",
+                  "value": "<string>",
+                  "description": "Minimum trace duration (ms)."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_duration_ms",
+                  "value": "<string>",
+                  "description": "Maximum trace duration (ms)."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_tokens",
+                  "value": "<string>",
+                  "description": "Minimum total (input + output) tokens."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_thread_traces",
+                  "value": "<string>",
+                  "description": "Minimum number of traces in the session/thread."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_thread_traces",
+                  "value": "<string>",
+                  "description": "Maximum number of traces in the session/thread."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52e68662-a561-4144-9914-9dd1fca5da36",
+              "name": "Dashboard traces",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "dashboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_spans",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_spans",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_duration_ms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_duration_ms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_tokens",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_thread_traces",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_thread_traces",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"otel_trace_id\": \"string\",\n      \"project_id\": \"string\",\n      \"service_name\": \"string\",\n      \"agent_name\": \"string\",\n      \"thread_id\": \"string\",\n      \"thread_trace_count\": 1012.0624386328669,\n      \"agent_input_display\": \"string\",\n      \"has_error\": false,\n      \"has_occurrences\": false,\n      \"span_count\": 16.565051193058178,\n      \"total_duration_ms\": 3024.6493867336767,\n      \"created_at\": \"string\",\n      \"updated_at\": \"string\",\n      \"issue_extraction\": {\n        \"status\": \"completed\",\n        \"reason\": \"no_issues_found\",\n        \"issue_count\": 5708.728952646532,\n        \"occurrence_count\": 1842.3690760553336,\n        \"completed_at\": \"2019-03-29T20:54:52.301Z\",\n        \"error_message\": \"string\"\n      },\n      \"agent_input\": null,\n      \"agent_output\": null\n    },\n    {\n      \"id\": \"string\",\n      \"otel_trace_id\": \"string\",\n      \"project_id\": \"string\",\n      \"service_name\": \"string\",\n      \"agent_name\": \"string\",\n      \"thread_id\": \"string\",\n      \"thread_trace_count\": 7112.569598509833,\n      \"agent_input_display\": \"string\",\n      \"has_error\": true,\n      \"has_occurrences\": false,\n      \"span_count\": 4548.515210060637,\n      \"total_duration_ms\": 6435.359831439899,\n      \"created_at\": \"string\",\n      \"updated_at\": \"string\",\n      \"issue_extraction\": {\n        \"status\": \"skipped\",\n        \"reason\": \"no_issues_found\",\n        \"issue_count\": 3249.919719266283,\n        \"occurrence_count\": 6664.345900027993,\n        \"completed_at\": \"1949-03-17T11:08:43.662Z\",\n        \"error_message\": \"string\"\n      },\n      \"agent_input\": null,\n      \"agent_output\": null\n    }\n  ],\n  \"total\": 2784.5847357765806,\n  \"next_cursor\": {\n    \"created_at\": \"string\",\n    \"id\": \"string\",\n    \"span_count\": 3157.849933359014,\n    \"total_duration_ms\": 7791.390252751586\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fc37c9b-60aa-4419-b2a5-51ebefe3306d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "dashboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_spans",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_spans",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_duration_ms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_duration_ms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_tokens",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_thread_traces",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_thread_traces",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1478499-7bb6-47d2-9504-cb9b031cb6b4",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "dashboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_spans",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_spans",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_duration_ms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_duration_ms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_tokens",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_thread_traces",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_thread_traces",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c88392c-6532-4702-89c9-173b7fd66da9",
+          "name": "Search traces",
+          "request": {
+            "name": "Search traces",
+            "description": {
+              "content": "Search traces with structural and behavioral filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Search query."
+                },
+                {
+                  "disabled": false,
+                  "key": "tool_name",
+                  "value": "<string>",
+                  "description": "Tool name filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "Model filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "agent_name",
+                  "value": "<string>",
+                  "description": "Agent name filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Dashboard status filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "error_only",
+                  "value": "<boolean>",
+                  "description": "Only return traces with errors."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "Start timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "End timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_spans",
+                  "value": "<string>",
+                  "description": "Minimum span count."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_spans",
+                  "value": "<string>",
+                  "description": "Maximum span count."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_duration_ms",
+                  "value": "<string>",
+                  "description": "Minimum trace duration (ms)."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_duration_ms",
+                  "value": "<string>",
+                  "description": "Maximum trace duration (ms)."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_tokens",
+                  "value": "<string>",
+                  "description": "Minimum total token count."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_thread_traces",
+                  "value": "<string>",
+                  "description": "Minimum thread trace count."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_thread_traces",
+                  "value": "<string>",
+                  "description": "Maximum thread trace count."
+                },
+                {
+                  "disabled": false,
+                  "key": "attribute_filters",
+                  "value": "<string>",
+                  "description": "JSON-serialized span attribute filters."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48e0296a-11a6-413a-a135-8709316d241b",
+              "name": "Search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tool_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "error_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_spans",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_spans",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_duration_ms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_duration_ms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_tokens",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_thread_traces",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_thread_traces",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attribute_filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"otel_trace_id\": \"string\",\n    \"project_id\": \"string\",\n    \"service_name\": \"string\",\n    \"created_at\": \"1987-05-30T02:04:35.173Z\",\n    \"issue_extraction\": {\n      \"status\": \"failed\",\n      \"reason\": \"no_issues_found\",\n      \"issue_count\": 2852.7229949732714,\n      \"occurrence_count\": 4102.090383534688,\n      \"completed_at\": \"2024-09-21T13:53:27.360Z\",\n      \"error_message\": \"string\"\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"otel_trace_id\": \"string\",\n    \"project_id\": \"string\",\n    \"service_name\": \"string\",\n    \"created_at\": \"2026-02-28T04:07:55.070Z\",\n    \"issue_extraction\": {\n      \"status\": \"skipped\",\n      \"reason\": \"null\",\n      \"issue_count\": 284.31883939274536,\n      \"occurrence_count\": 4590.1954476615665,\n      \"completed_at\": \"2025-05-07T05:07:40.678Z\",\n      \"error_message\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59a2cfe9-0144-448a-83d3-8ee20be5d35e",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tool_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "error_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_spans",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_spans",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_duration_ms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_duration_ms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_tokens",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_thread_traces",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_thread_traces",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attribute_filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b70dbca8-c94d-47b4-8325-b9af999d9133",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tool_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "agent_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "error_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_spans",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_spans",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_duration_ms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_duration_ms",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_tokens",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "min_thread_traces",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "max_thread_traces",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "attribute_filters",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f384a59a-f3c8-40d1-9c02-0a853d472420",
+          "name": "Semantic search traces",
+          "request": {
+            "name": "Semantic search traces",
+            "description": {
+              "content": "Search traces by semantic similarity over embedded trace summaries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                "semantic-search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Natural-language semantic search query."
+                },
+                {
+                  "disabled": false,
+                  "key": "tool_name",
+                  "value": "<string>",
+                  "description": "Tool name filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "model",
+                  "value": "<string>",
+                  "description": "Model filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "error_only",
+                  "value": "<boolean>",
+                  "description": "Only return traces with errors."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "Start timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "End timestamp."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03cb724a-7f26-4816-a38d-ef17f79959e2",
+              "name": "Semantic search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "semantic-search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tool_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "error_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"otel_trace_id\": \"string\",\n    \"project_id\": \"string\",\n    \"service_name\": \"string\",\n    \"created_at\": \"2002-08-19T14:31:08.787Z\",\n    \"issue_extraction\": {\n      \"status\": \"skipped\",\n      \"reason\": \"unsupported_trace\",\n      \"issue_count\": 5682.557244517307,\n      \"occurrence_count\": 9071.98371799166,\n      \"completed_at\": \"1968-02-16T14:13:08.561Z\",\n      \"error_message\": \"string\"\n    },\n    \"summary\": \"string\",\n    \"similarity\": 4712.267607842333\n  },\n  {\n    \"id\": \"string\",\n    \"otel_trace_id\": \"string\",\n    \"project_id\": \"string\",\n    \"service_name\": \"string\",\n    \"created_at\": \"2010-10-27T00:59:33.645Z\",\n    \"issue_extraction\": {\n      \"status\": \"failed\",\n      \"reason\": \"unsupported_trace\",\n      \"issue_count\": 5181.31590613199,\n      \"occurrence_count\": 7408.636906515011,\n      \"completed_at\": \"1954-11-12T20:57:49.142Z\",\n      \"error_message\": \"string\"\n    },\n    \"summary\": \"string\",\n    \"similarity\": 1476.2881102698477\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d31d7032-3f48-4eab-862a-1485741d7ac0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "semantic-search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tool_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "error_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba6390c9-0f26-415d-8c45-c5fce1c690b0",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "semantic-search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tool_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "model",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "error_only",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b026e6b-adf2-465d-90f2-b70840b4a565",
+          "name": "List trace agent names",
+          "request": {
+            "name": "List trace agent names",
+            "description": {
+              "content": "Returns agent names seen in project traces.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                "agent-names"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6014d2f-23cb-42b9-89c9-8a58e5f0e3dc",
+              "name": "Agent names",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "agent-names"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agent_names\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ede52aa-26bc-456a-88a5-69fc8f823fbb",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "agent-names"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a74d55dc-11c9-4f87-93ae-00a4c8933d3c",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "agent-names"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d80cc59b-adbd-4602-a701-db5a86921301",
+          "name": "Check ready traces",
+          "request": {
+            "name": "Check ready traces",
+            "description": {
+              "content": "Returns whether a project has ready traces.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                "has-ready"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1184e8d7-4815-4691-bc6b-490252e4a02a",
+              "name": "Ready traces flag",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "has-ready"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"has_ready_traces\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea080ff1-3158-4eb4-8897-af849ee4bd2d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "has-ready"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2988d764-1e8b-4ee4-bb4e-fc15e88c7f67",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "has-ready"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0c56cad-fd7c-4353-be18-ab22bf521034",
+          "name": "Check per-trace ingest status",
+          "request": {
+            "name": "Check per-trace ingest status",
+            "description": {
+              "content": "Returns enqueued (Redis index), ingested (ClickHouse traces row), ready (trace_stats), or not_found for a specific otel_trace_id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                "ingest-status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "otel_trace_id",
+                  "value": "<string>",
+                  "description": "(Required) OTel / SDK trace id to look up."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e9b4860d-f4ef-4840-88c6-b977e2c398b0",
+              "name": "Ingest status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "ingest-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "otel_trace_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"project_id\": \"string\",\n  \"otel_trace_id\": \"string\",\n  \"status\": \"ready\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aed18ddb-53dd-446e-a0f5-018c96e73d13",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "ingest-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "otel_trace_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3f3c70e-fc50-479a-9d08-badb2721f1dd",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "ingest-status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "otel_trace_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea2fd3f9-5875-4b3b-acba-322a41ed997d",
+          "name": "Bulk delete traces",
+          "request": {
+            "name": "Bulk delete traces",
+            "description": {
+              "content": "Delete multiple traces for a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                "bulk-delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"<string>\",\n  \"trace_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"traceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "73660f07-2c33-487f-81cb-1d724810c570",
+              "name": "Traces deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "bulk-delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_id\": \"<string>\",\n  \"trace_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"traceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9cd102af-65fb-442d-8074-b65f3877e914",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "bulk-delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_id\": \"<string>\",\n  \"trace_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"traceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83138df1-9510-49da-a545-4954c30b546b",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "bulk-delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_id\": \"<string>\",\n  \"trace_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"traceIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "442c3691-816c-4c92-8d2d-e15243103d30",
+          "name": "Get agent names by trace ids",
+          "request": {
+            "name": "Get agent names by trace ids",
+            "description": {
+              "content": "Returns a map of trace id to agent name (from ClickHouse trace_stats).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                "agent-names-by-ids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_id\": \"<string>\",\n  \"trace_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8ba649f0-deaa-4fcc-9ba7-de2310892469",
+              "name": "Agent names",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "agent-names-by-ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_id\": \"<string>\",\n  \"trace_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"agent_names\": [\n    {\n      \"trace_id\": \"string\",\n      \"agent_name\": \"string\"\n    },\n    {\n      \"trace_id\": \"string\",\n      \"agent_name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54b9f714-efcc-4a38-8d7d-94cdceda8c7c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "agent-names-by-ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_id\": \"<string>\",\n  \"trace_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "348b809a-be35-482a-a67c-4c4b32ddb964",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "agent-names-by-ids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_id\": \"<string>\",\n  \"trace_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "efc98696-bfcf-4b42-bdf0-f9ede01f3add",
+          "name": "Get trace by run id",
+          "request": {
+            "name": "Get trace by run id",
+            "description": {
+              "content": "Resolves a trace from an agent run id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                "by-run-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "run_id",
+                  "value": "<string>",
+                  "description": "Agent run id."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c91ca9a1-8e4c-427a-8781-65790bb7f009",
+              "name": "Trace",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "by-run-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "run_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"project_id\": \"string\",\n  \"service_name\": \"string\",\n  \"created_at\": \"1987-06-15T18:48:34.233Z\",\n  \"updated_at\": \"2007-01-31T22:17:36.457Z\",\n  \"otel_trace_id\": \"string\",\n  \"ready\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b79a52b2-55bd-4f9f-b4fe-47030a64aa6c",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "by-run-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "run_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5d7cac7-5c0f-411b-ace6-947bdaaceef2",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    "by-run-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "run_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ed72780-ae42-40f6-a911-15e94820d526",
+          "name": "Get trace context bundle",
+          "request": {
+            "name": "Get trace context bundle",
+            "description": {
+              "content": "Returns the trace row, trace_stats row, ordered spans, and issue occurrences for chat/agent context.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                ":trace_id",
+                "context"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trace_id",
+                  "description": "(Required) Trace ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f46c259-484f-473a-8f83-3dd6e13b0445",
+              "name": "Trace context",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    "context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) Trace ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"trace\": {\n    \"id\": \"string\",\n    \"project_id\": \"string\",\n    \"service_name\": \"string\",\n    \"created_at\": \"2001-01-01T18:32:48.625Z\",\n    \"updated_at\": \"1951-02-01T08:29:44.553Z\",\n    \"otel_trace_id\": \"string\",\n    \"ready\": true\n  },\n  \"stats\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  },\n  \"spans\": [\n    {\n      \"id\": \"string\",\n      \"otel_span_id\": \"string\",\n      \"parent_otel_span_id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"start_time_ns\": \"string\",\n      \"end_time_ns\": \"string\",\n      \"duration_ms\": 1004.5707961587425,\n      \"status_code\": \"string\",\n      \"status_description\": \"string\",\n      \"input_tokens\": 8716.966682684399,\n      \"output_tokens\": 6465.918929583262,\n      \"model_name\": \"string\",\n      \"tps\": 1217.7489053637103,\n      \"attributes\": {\n        \"key_0\": {}\n      },\n      \"events\": \"\"\n    },\n    {\n      \"id\": \"string\",\n      \"otel_span_id\": \"string\",\n      \"parent_otel_span_id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"start_time_ns\": \"string\",\n      \"end_time_ns\": \"string\",\n      \"duration_ms\": 2018.9398487912824,\n      \"status_code\": \"string\",\n      \"status_description\": \"string\",\n      \"input_tokens\": 2880.8961613687256,\n      \"output_tokens\": 8010.677994829289,\n      \"model_name\": \"string\",\n      \"tps\": 1175.9246174614668,\n      \"attributes\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      },\n      \"events\": \"\"\n    }\n  ],\n  \"issue_occurrences\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"rationale\": \"string\",\n      \"source_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"evidence_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": \"string\",\n      \"trace_id\": \"string\",\n      \"issue_id\": \"string\",\n      \"citations\": \"\",\n      \"issue\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"string\",\n        \"category\": \"string\",\n        \"agent_name\": \"string\"\n      },\n      \"issue_name\": \"string\",\n      \"issue_category\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"rationale\": \"string\",\n      \"source_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"evidence_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": \"string\",\n      \"trace_id\": \"string\",\n      \"issue_id\": \"string\",\n      \"citations\": \"\",\n      \"issue\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"string\",\n        \"category\": \"string\",\n        \"agent_name\": \"string\"\n      },\n      \"issue_name\": \"string\",\n      \"issue_category\": \"string\"\n    }\n  ],\n  \"issue_extraction\": {\n    \"status\": \"failed\",\n    \"reason\": \"no_spans\",\n    \"issue_count\": 5887.431398705555,\n    \"occurrence_count\": 7093.778414106233,\n    \"completed_at\": \"2007-03-07T15:50:17.617Z\",\n    \"error_message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d901fb1b-e3ab-4030-ab1d-cc4488c4d6e1",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    "context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) Trace ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e6818ad-b2b6-4109-8469-2a70e11d6f6f",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    "context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) Trace ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ef5edd1-a78b-43e4-b644-9e600486c32b",
+          "name": "Get trace",
+          "request": {
+            "name": "Get trace",
+            "description": {
+              "content": "Loads a single trace with spans and stats.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                ":trace_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trace_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39dfe495-2ac2-445c-927a-7856df275afa",
+              "name": "Trace details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"otel_trace_id\": \"string\",\n  \"project_id\": \"string\",\n  \"service_name\": \"string\",\n  \"agent_name\": \"string\",\n  \"thread_id\": \"string\",\n  \"thread_trace_count\": 499.4445552003024,\n  \"agent_input_display\": \"string\",\n  \"has_error\": true,\n  \"total_duration_ms\": 3403.5359684844802,\n  \"created_at\": \"2008-01-29T06:01:45.926Z\",\n  \"updated_at\": \"string\",\n  \"spans\": [\n    {\n      \"id\": \"string\",\n      \"otel_span_id\": \"string\",\n      \"parent_otel_span_id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"start_time_ns\": \"string\",\n      \"end_time_ns\": \"string\",\n      \"duration_ms\": 2377.8984491577403,\n      \"status_code\": \"string\",\n      \"status_description\": \"string\",\n      \"input_tokens\": 974.8192886772555,\n      \"output_tokens\": 4566.625090434053,\n      \"model_name\": \"string\",\n      \"tps\": 7011.387697649329,\n      \"attributes\": {\n        \"key_0\": {}\n      },\n      \"events\": \"\"\n    },\n    {\n      \"id\": \"string\",\n      \"otel_span_id\": \"string\",\n      \"parent_otel_span_id\": \"string\",\n      \"name\": \"string\",\n      \"kind\": \"string\",\n      \"start_time_ns\": \"string\",\n      \"end_time_ns\": \"string\",\n      \"duration_ms\": 6781.5573600849475,\n      \"status_code\": \"string\",\n      \"status_description\": \"string\",\n      \"input_tokens\": 5956.8051332659,\n      \"output_tokens\": 4439.288588960486,\n      \"model_name\": \"string\",\n      \"tps\": 6315.826762068128,\n      \"attributes\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      },\n      \"events\": \"\"\n    }\n  ],\n  \"stats\": {\n    \"span_count\": 3474.8809627275036,\n    \"total_tokens\": 3440.5122399035117,\n    \"total_duration_ms\": 7969.055159613685,\n    \"error_count\": 5576.039847991207,\n    \"tool_calls\": [\n      {\n        \"name\": \"string\",\n        \"otel_span_id\": \"string\",\n        \"status\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"otel_span_id\": \"string\",\n        \"status\": \"string\"\n      }\n    ],\n    \"models_used\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"issue_extraction\": {\n    \"status\": \"failed\",\n    \"reason\": \"error\",\n    \"issue_count\": 8438.698445629721,\n    \"occurrence_count\": 1106.5600660272678,\n    \"completed_at\": \"1966-07-15T23:47:02.605Z\",\n    \"error_message\": \"string\"\n  },\n  \"project_name\": \"string\",\n  \"agent_input\": null,\n  \"agent_output\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0fa7c7f-1421-411e-bf9b-a73ca7e4375f",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce7d5927-65f4-46f9-93d7-d6815d7fcb34",
+          "name": "Delete trace",
+          "request": {
+            "name": "Delete trace",
+            "description": {
+              "content": "Delete a trace for a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                ":trace_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trace_id",
+                  "description": "(Required) Trace ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f77fcd5-fd63-4389-a1e3-8a2ceac35252",
+              "name": "Trace deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) Trace ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "35b6a26e-a2b3-45d3-9ead-f25e4a68ccac",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) Trace ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fcfb2cfb-42e4-4623-b744-e3b6bd57abde",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) Trace ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "922e3967-84f7-42a7-a58e-2357bbfceb80",
+          "name": "List trace spans",
+          "request": {
+            "name": "List trace spans",
+            "description": {
+              "content": "Returns spans for a ready trace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                ":trace_id",
+                "spans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trace_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8db6b8d3-4742-4f3b-a69a-29cdd0c8fd57",
+              "name": "Trace spans",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    "spans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"otel_span_id\": \"string\",\n    \"parent_otel_span_id\": \"string\",\n    \"name\": \"string\",\n    \"kind\": \"string\",\n    \"start_time_ns\": \"string\",\n    \"end_time_ns\": \"string\",\n    \"duration_ms\": 8340.871664262377,\n    \"status_code\": \"string\",\n    \"status_description\": \"string\",\n    \"input_tokens\": 7185.172228777708,\n    \"output_tokens\": 1150.6882592659463,\n    \"model_name\": \"string\",\n    \"tps\": 8194.53434349136,\n    \"attributes\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {},\n      \"key_4\": {}\n    },\n    \"events\": \"\"\n  },\n  {\n    \"id\": \"string\",\n    \"otel_span_id\": \"string\",\n    \"parent_otel_span_id\": \"string\",\n    \"name\": \"string\",\n    \"kind\": \"string\",\n    \"start_time_ns\": \"string\",\n    \"end_time_ns\": \"string\",\n    \"duration_ms\": 2033.3551991895338,\n    \"status_code\": \"string\",\n    \"status_description\": \"string\",\n    \"input_tokens\": 9720.79244734712,\n    \"output_tokens\": 7040.1216131426045,\n    \"model_name\": \"string\",\n    \"tps\": 1630.9584689995904,\n    \"attributes\": {\n      \"key_0\": {}\n    },\n    \"events\": \"\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "629c7293-bcad-41c8-bee4-55a6e8f3b55b",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    "spans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87b9e19a-d1f2-47fd-8387-1ed9a5d3173c",
+          "name": "Get thread trace neighbors",
+          "request": {
+            "name": "Get thread trace neighbors",
+            "description": {
+              "content": "Returns previous and next ready traces from the same thread.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                ":trace_id",
+                "thread-neighbors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trace_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56373b68-662a-4aa0-bf53-877c3b8d2600",
+              "name": "Thread neighbors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    "thread-neighbors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"prev_trace_id\": \"string\",\n  \"next_trace_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe087265-f9ae-49ef-ad4b-6f6fa83354fd",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    "thread-neighbors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d95e6f8-a8c9-4141-adae-09a4254f3f21",
+          "name": "List thread traces",
+          "request": {
+            "name": "List thread traces",
+            "description": {
+              "content": "Returns every ready trace in the given trace's thread, enriched and ordered oldest first. Empty for standalone traces.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                ":trace_id",
+                "thread"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trace_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22585cb3-93f9-4a3d-8bb3-8c2ff13c02e9",
+              "name": "Thread traces",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    "thread"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"thread_id\": \"string\",\n  \"traces\": [\n    {\n      \"id\": \"string\",\n      \"otel_trace_id\": \"string\",\n      \"project_id\": \"string\",\n      \"service_name\": \"string\",\n      \"agent_name\": \"string\",\n      \"thread_id\": \"string\",\n      \"thread_trace_count\": 6566.819466450298,\n      \"agent_input_display\": \"string\",\n      \"has_error\": true,\n      \"has_occurrences\": false,\n      \"span_count\": 2863.280115372829,\n      \"total_duration_ms\": 7162.537108808347,\n      \"created_at\": \"string\",\n      \"updated_at\": \"string\",\n      \"agent_input\": null,\n      \"agent_output\": null\n    },\n    {\n      \"id\": \"string\",\n      \"otel_trace_id\": \"string\",\n      \"project_id\": \"string\",\n      \"service_name\": \"string\",\n      \"agent_name\": \"string\",\n      \"thread_id\": \"string\",\n      \"thread_trace_count\": 911.5004404175686,\n      \"agent_input_display\": \"string\",\n      \"has_error\": false,\n      \"has_occurrences\": false,\n      \"span_count\": 549.5403821672706,\n      \"total_duration_ms\": 4480.98792274407,\n      \"created_at\": \"string\",\n      \"updated_at\": \"string\",\n      \"agent_input\": null,\n      \"agent_output\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cd84d66-d32f-40c7-a385-7f0b451414ea",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    "thread"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c919163-150e-4bbf-abeb-cf14338d03cc",
+          "name": "List trace issue occurrences",
+          "request": {
+            "name": "List trace issue occurrences",
+            "description": {
+              "content": "Returns issue occurrence evidence linked to a ready trace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "traces",
+                ":trace_id",
+                "issue_occurrences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trace_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "022fac54-c64c-4bb5-a59c-371d2a21ec19",
+              "name": "Issue occurrences",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    "issue_occurrences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issue_occurrences\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"rationale\": \"string\",\n      \"source_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"evidence_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": \"string\",\n      \"trace_id\": \"string\",\n      \"issue_id\": \"string\",\n      \"citations\": \"\",\n      \"issue\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"string\",\n        \"category\": \"string\",\n        \"agent_name\": \"string\"\n      },\n      \"issue_name\": \"string\",\n      \"issue_category\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\",\n      \"rationale\": \"string\",\n      \"source_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"evidence_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": \"string\",\n      \"trace_id\": \"string\",\n      \"issue_id\": \"string\",\n      \"citations\": \"\",\n      \"issue\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"status\": \"string\",\n        \"category\": \"string\",\n        \"agent_name\": \"string\"\n      },\n      \"issue_name\": \"string\",\n      \"issue_category\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2df028eb-6357-4057-be97-a56326d5d1f6",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "traces",
+                    ":trace_id",
+                    "issue_occurrences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trace_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0ad7313-b7ec-4c66-9fee-faa039fde138",
+          "name": "List thread issue summaries",
+          "request": {
+            "name": "List thread issue summaries",
+            "description": {
+              "content": "Batch-fetch issue extraction completion and destin issues for thread_ids (join key for eval trial_hash).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":project_id",
+                "thread-issue-summaries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "project_id",
+                  "description": "(Required) Project ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"thread_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1c38ba8f-cd04-46fd-a41d-3e795f2a64af",
+              "name": "Thread issue summaries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "thread-issue-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) Project ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"thread_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": [\n    {\n      \"thread_id\": \"string\",\n      \"trace_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"extraction\": {\n        \"completed\": false,\n        \"statuses\": [\n          \"running\",\n          \"completed\"\n        ],\n        \"reasons\": [\n          \"issues_found\",\n          \"issues_found\"\n        ]\n      },\n      \"issues\": [\n        {\n          \"issue_id\": \"string\",\n          \"title\": \"string\",\n          \"category\": \"string\",\n          \"rationale\": \"string\"\n        },\n        {\n          \"issue_id\": \"string\",\n          \"title\": \"string\",\n          \"category\": \"string\",\n          \"rationale\": \"string\"\n        }\n      ]\n    },\n    {\n      \"thread_id\": \"string\",\n      \"trace_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"extraction\": {\n        \"completed\": false,\n        \"statuses\": [\n          \"failed\",\n          \"skipped\"\n        ],\n        \"reasons\": [\n          \"unsupported_trace\",\n          \"error\"\n        ]\n      },\n      \"issues\": [\n        {\n          \"issue_id\": \"string\",\n          \"title\": \"string\",\n          \"category\": \"string\",\n          \"rationale\": \"string\"\n        },\n        {\n          \"issue_id\": \"string\",\n          \"title\": \"string\",\n          \"category\": \"string\",\n          \"rationale\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c6efc16-eee0-473a-8484-359fa7e1f639",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "thread-issue-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) Project ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"thread_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ceba56dd-4471-42c1-9881-f35db7959065",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":project_id",
+                    "thread-issue-summaries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "project_id",
+                      "description": "(Required) Project ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"thread_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.uselemma.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "48ecda83-96ff-4fe0-9505-80b56ef92b85",
+    "name": "Lemma Platform Artifacts Traces API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Lemma Platform HTTP API for AI observability and workspace operations.",
+      "type": "text/plain"
+    }
+  }
+}

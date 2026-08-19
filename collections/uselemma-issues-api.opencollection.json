@@ -1,0 +1,253 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemma Platform Artifacts Issues API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Issues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/issues",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Issue status filter."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              }
+            ]
+          },
+          "docs": "List issues for a project."
+        },
+        {
+          "info": {
+            "name": "List dashboard issues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/issues/dashboard",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              }
+            ]
+          },
+          "docs": "List dashboard-ready issues for a project."
+        },
+        {
+          "info": {
+            "name": "Get issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/issues/:issue_id",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "Issue ID."
+              }
+            ]
+          },
+          "docs": "Get a single issue. The validation field is null when no validation row exists; when present it contains status, confidence, evidenceSummary, checkedTools, caveats, and validatedAt."
+        },
+        {
+          "info": {
+            "name": "Set issue status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.uselemma.ai/issues/:issue_id",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "Issue ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update issue lifecycle status. Resolved and dismissed close the issue and append close feedback."
+        },
+        {
+          "info": {
+            "name": "Get issue metric series",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/issues/:issue_id/metric-series",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "Issue ID."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              },
+              {
+                "name": "as_of",
+                "value": "",
+                "type": "query",
+                "description": "As-of timestamp (ISO-8601) for the 30-day window."
+              }
+            ]
+          },
+          "docs": "Returns zero-filled daily occurrence buckets for an issue over the last 30 days."
+        },
+        {
+          "info": {
+            "name": "Get issue artifact context",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/issues/:issue_id/artifact-context",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "Issue ID."
+              }
+            ]
+          },
+          "docs": "Returns bounded learn-agent and uploaded text artifact context for validation and debugging."
+        },
+        {
+          "info": {
+            "name": "List issue occurrences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/issues/:issue_id/occurrences",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "Issue ID."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip."
+              }
+            ]
+          },
+          "docs": "List occurrences for an issue."
+        },
+        {
+          "info": {
+            "name": "Get issue chat context",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/issues/:issue_id/chat-context",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "Issue ID."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              }
+            ]
+          },
+          "docs": "Returns the issue, recent occurrences, aggregate stats, and per-trace bundles (trace row + trace_stats + spans) for issue chat."
+        },
+        {
+          "info": {
+            "name": "Get issue markdown",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/issues/:issue_id/markdown",
+            "params": [
+              {
+                "name": "issue_id",
+                "value": "",
+                "type": "path",
+                "description": "Issue ID."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              }
+            ]
+          },
+          "docs": "Build markdown for an issue."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1943 @@
+{
+  "item": [
+    {
+      "id": "69d648c8-b20d-411c-b3ab-e5fb183e5a3b",
+      "name": "Issues",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c835da50-4027-4ad3-b5e7-631bac803a94",
+          "name": "List issues",
+          "request": {
+            "name": "List issues",
+            "description": {
+              "content": "List issues for a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Issue status filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Number of records to skip."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00a5340c-4d92-46c8-ae74-1f00c975e771",
+              "name": "Issues list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issues\": [\n    {\n      \"id\": \"string\",\n      \"project_id\": \"string\",\n      \"agent_name\": \"string\",\n      \"name\": \"string\",\n      \"subsystem\": \"string\",\n      \"failure_class\": \"string\",\n      \"canonical_mechanism\": \"string\",\n      \"status\": \"closed\",\n      \"created_at\": \"1996-04-24T08:56:27.680Z\",\n      \"updated_at\": \"1999-11-19T15:44:39.718Z\",\n      \"first_seen_at\": \"1984-06-21T13:22:56.603Z\",\n      \"last_seen_at\": \"1962-01-31T02:47:06.603Z\",\n      \"occurrence_count\": 820.3805860316493,\n      \"trace_count\": 8682.58601887973,\n      \"latest_close_feedback\": {\n        \"id\": \"string\",\n        \"issue_id\": \"string\",\n        \"project_id\": \"string\",\n        \"user_id\": \"string\",\n        \"api_key_id\": \"string\",\n        \"action\": \"resolved\",\n        \"reason\": \"string\",\n        \"detail\": \"string\",\n        \"created_at\": \"2011-02-18T00:45:50.765Z\"\n      },\n      \"linked_metric\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"validation\": {\n        \"status\": \"not_run\"\n      },\n      \"lane_scores\": {\n        \"A\": 7298.327244672031,\n        \"B\": 8268.361152243573,\n        \"C\": 2613.108866183689\n      },\n      \"raw_lane_scores\": {\n        \"impact_occurrences\": 4649.911589607284,\n        \"impact_project_occurrences\": 435.63269262296035,\n        \"impact_project_traces\": 7843.845404616735,\n        \"impact_occurrence_share\": 3196.5845837910842,\n        \"impact_affected_traces\": 7218.05608805958,\n        \"impact_trace_share\": 7733.174874432637,\n        \"impact_trace_share_lower\": 4321.5523931635535,\n        \"impact_judged_traces\": 555.718991191877,\n        \"spike_current\": 1172.142005255149,\n        \"spike_baseline\": 2092.0402113801797,\n        \"spike_ratio\": 2874.7308005938144,\n        \"spike_baseline_count\": 8227.42024542423,\n        \"spike_baseline_exposure\": 520.3987059907533,\n        \"spike_current_exposure\": 6949.362226347757,\n        \"persistence_span_days\": 1869.6688091497572,\n        \"persistence_active_days\": 71.8567002190551,\n        \"resolution_floor\": 4080.2879607216014\n      },\n      \"lanes_fired\": [\n        \"B\",\n        \"B\"\n      ],\n      \"metric_flags\": {\n        \"impact\": false,\n        \"spike\": false,\n        \"persistence\": false\n      },\n      \"fired_count\": 2372.429472267058,\n      \"surface\": false,\n      \"notify\": true,\n      \"priority_computed_at\": \"1964-11-19T23:16:20.316Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"project_id\": \"string\",\n      \"agent_name\": \"string\",\n      \"name\": \"string\",\n      \"subsystem\": \"string\",\n      \"failure_class\": \"string\",\n      \"canonical_mechanism\": \"string\",\n      \"status\": \"open\",\n      \"created_at\": \"1970-01-18T15:29:13.347Z\",\n      \"updated_at\": \"1992-01-03T14:41:06.359Z\",\n      \"first_seen_at\": \"1963-01-26T21:18:29.914Z\",\n      \"last_seen_at\": \"1973-01-10T16:13:05.882Z\",\n      \"occurrence_count\": 8052.564659325362,\n      \"trace_count\": 8035.29272289708,\n      \"latest_close_feedback\": {\n        \"id\": \"string\",\n        \"issue_id\": \"string\",\n        \"project_id\": \"string\",\n        \"user_id\": \"string\",\n        \"api_key_id\": \"string\",\n        \"action\": \"resolved\",\n        \"reason\": \"string\",\n        \"detail\": \"string\",\n        \"created_at\": \"1980-03-03T20:03:37.827Z\"\n      },\n      \"linked_metric\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"validation\": {\n        \"status\": \"not_run\"\n      },\n      \"lane_scores\": {\n        \"A\": 8338.00828539035,\n        \"B\": 7645.0919257408805,\n        \"C\": 2307.1480031412807\n      },\n      \"raw_lane_scores\": {\n        \"impact_occurrences\": 9138.695596069603,\n        \"impact_project_occurrences\": 1990.4171852544216,\n        \"impact_project_traces\": 8229.786646236978,\n        \"impact_occurrence_share\": 9531.17819257545,\n        \"impact_affected_traces\": 1187.2581522206372,\n        \"impact_trace_share\": 1601.5041060387614,\n        \"impact_trace_share_lower\": 8600.413614649076,\n        \"impact_judged_traces\": 7210.799576282216,\n        \"spike_current\": 3399.342381093293,\n        \"spike_baseline\": 1267.0120960111808,\n        \"spike_ratio\": 9255.68991747213,\n        \"spike_baseline_count\": 2375.899770346803,\n        \"spike_baseline_exposure\": 9534.091558452385,\n        \"spike_current_exposure\": 8611.558230851559,\n        \"persistence_span_days\": 4680.388586521259,\n        \"persistence_active_days\": 6000.8206852754365,\n        \"resolution_floor\": 3143.402195259304\n      },\n      \"lanes_fired\": [\n        \"B\",\n        \"A\"\n      ],\n      \"metric_flags\": {\n        \"impact\": false,\n        \"spike\": false,\n        \"persistence\": false\n      },\n      \"fired_count\": 9227.14772309728,\n      \"surface\": true,\n      \"notify\": true,\n      \"priority_computed_at\": \"2024-07-07T11:06:19.469Z\"\n    }\n  ],\n  \"total\": 6216.631939177169,\n  \"limit\": 6598.116886231807,\n  \"offset\": 4154.010448938275,\n  \"has_more\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59dbd102-15ed-43be-a3d2-658546c9b738",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ead807ec-11fc-40b0-9281-54cc0ea1ef54",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "084db231-6b62-40f4-809c-5b0e29e16a1b",
+          "name": "List dashboard issues",
+          "request": {
+            "name": "List dashboard issues",
+            "description": {
+              "content": "List dashboard-ready issues for a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                "dashboard"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c980caf3-20de-4a9d-a576-fa5c8212aec8",
+              "name": "Dashboard issues",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "dashboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issues\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"open\",\n      \"agent_name\": \"string\",\n      \"subsystem\": \"string\",\n      \"failure_class\": \"string\",\n      \"canonical_mechanism\": \"string\",\n      \"first_seen_at\": \"2007-10-20T06:19:30.550Z\",\n      \"last_seen_at\": \"1983-12-11T11:34:05.106Z\",\n      \"occurrence_count\": 3532.0480605180837,\n      \"trace_count\": 6437.448073313242,\n      \"latest_close_feedback\": {\n        \"id\": \"string\",\n        \"issue_id\": \"string\",\n        \"project_id\": \"string\",\n        \"user_id\": \"string\",\n        \"api_key_id\": \"string\",\n        \"action\": \"resolved\",\n        \"reason\": \"string\",\n        \"detail\": \"string\",\n        \"created_at\": \"1961-09-24T06:31:14.082Z\"\n      },\n      \"linked_metric\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"validation\": {\n        \"status\": \"not_run\"\n      },\n      \"lane_scores\": {\n        \"A\": 1346.8429874101062,\n        \"B\": 7631.34005116736,\n        \"C\": 1744.5908091709505\n      },\n      \"raw_lane_scores\": {\n        \"impact_occurrences\": 8995.491687901467,\n        \"impact_project_occurrences\": 9716.849283018017,\n        \"impact_project_traces\": 1860.050742192676,\n        \"impact_occurrence_share\": 265.20627842754,\n        \"impact_affected_traces\": 7925.789109133614,\n        \"impact_trace_share\": 6066.350832155073,\n        \"impact_trace_share_lower\": 6427.034265310769,\n        \"impact_judged_traces\": 4025.941342198469,\n        \"spike_current\": 6819.186646176508,\n        \"spike_baseline\": 4119.70018974205,\n        \"spike_ratio\": 6109.0328618110225,\n        \"spike_baseline_count\": 6576.457803281316,\n        \"spike_baseline_exposure\": 8088.760860151289,\n        \"spike_current_exposure\": 4547.537362277171,\n        \"persistence_span_days\": 5618.646829041361,\n        \"persistence_active_days\": 1386.1122922458103,\n        \"resolution_floor\": 7199.441425900299\n      },\n      \"lanes_fired\": [\n        \"A\",\n        \"A\"\n      ],\n      \"metric_flags\": {\n        \"impact\": true,\n        \"spike\": true,\n        \"persistence\": false\n      },\n      \"fired_count\": 4306.485208574618,\n      \"surface\": true,\n      \"notify\": true,\n      \"priority_computed_at\": \"1985-08-11T09:39:05.096Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"open\",\n      \"agent_name\": \"string\",\n      \"subsystem\": \"string\",\n      \"failure_class\": \"string\",\n      \"canonical_mechanism\": \"string\",\n      \"first_seen_at\": \"2022-05-04T10:24:40.455Z\",\n      \"last_seen_at\": \"2024-11-07T02:57:23.573Z\",\n      \"occurrence_count\": 9059.463814888606,\n      \"trace_count\": 1747.7926834473312,\n      \"latest_close_feedback\": {\n        \"id\": \"string\",\n        \"issue_id\": \"string\",\n        \"project_id\": \"string\",\n        \"user_id\": \"string\",\n        \"api_key_id\": \"string\",\n        \"action\": \"dismissed\",\n        \"reason\": \"string\",\n        \"detail\": \"string\",\n        \"created_at\": \"2022-08-13T20:58:36.408Z\"\n      },\n      \"linked_metric\": {\n        \"id\": \"string\",\n        \"name\": \"string\"\n      },\n      \"validation\": {\n        \"status\": \"valid\"\n      },\n      \"lane_scores\": {\n        \"A\": 1419.7276517525315,\n        \"B\": 6859.028226430259,\n        \"C\": 7640.0069517065585\n      },\n      \"raw_lane_scores\": {\n        \"impact_occurrences\": 1887.9386009808575,\n        \"impact_project_occurrences\": 6965.2249870482,\n        \"impact_project_traces\": 8858.892729640098,\n        \"impact_occurrence_share\": 3013.671983904931,\n        \"impact_affected_traces\": 9434.264776851693,\n        \"impact_trace_share\": 3887.964860491615,\n        \"impact_trace_share_lower\": 3807.7304244471898,\n        \"impact_judged_traces\": 7144.768723465387,\n        \"spike_current\": 221.51024075069526,\n        \"spike_baseline\": 5043.619892694735,\n        \"spike_ratio\": 9919.16384038726,\n        \"spike_baseline_count\": 3841.716078956081,\n        \"spike_baseline_exposure\": 2748.0803237758732,\n        \"spike_current_exposure\": 4260.374835342918,\n        \"persistence_span_days\": 9203.307861990837,\n        \"persistence_active_days\": 1004.4831483089345,\n        \"resolution_floor\": 2531.3869218283057\n      },\n      \"lanes_fired\": [\n        \"C\",\n        \"C\"\n      ],\n      \"metric_flags\": {\n        \"impact\": false,\n        \"spike\": false,\n        \"persistence\": true\n      },\n      \"fired_count\": 2230.425617256365,\n      \"surface\": false,\n      \"notify\": true,\n      \"priority_computed_at\": \"1963-06-05T13:57:04.913Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78f43db8-35e0-4cbd-a05b-f77afdefef6a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "dashboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e31e0ae-90a9-46ca-bb75-c8b002d134b5",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    "dashboard"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f91290be-e1b2-47cf-9449-2b2eaad6b028",
+          "name": "Get issue",
+          "request": {
+            "name": "Get issue",
+            "description": {
+              "content": "Get a single issue. The validation field is null when no validation row exists; when present it contains status, confidence, evidenceSummary, checkedTools, caveats, and validatedAt.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                ":issue_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issue_id",
+                  "description": "(Required) Issue ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d4a35b8c-6c30-43b3-97cd-e1f2a3816b06",
+              "name": "Issue",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"project_id\": \"string\",\n  \"agent_name\": \"string\",\n  \"name\": \"string\",\n  \"subsystem\": \"string\",\n  \"failure_class\": \"string\",\n  \"canonical_mechanism\": \"string\",\n  \"status\": \"open\",\n  \"created_at\": \"2022-02-25T11:45:25.744Z\",\n  \"updated_at\": \"1998-10-18T12:32:29.369Z\",\n  \"latest_close_feedback\": {\n    \"id\": \"string\",\n    \"issue_id\": \"string\",\n    \"project_id\": \"string\",\n    \"user_id\": \"string\",\n    \"api_key_id\": \"string\",\n    \"action\": \"dismissed\",\n    \"reason\": \"string\",\n    \"detail\": \"string\",\n    \"created_at\": \"2026-04-19T17:42:55.826Z\"\n  },\n  \"linked_metric\": {\n    \"id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"validation\": {\n    \"status\": \"inconclusive\",\n    \"confidence\": 649.4719084403711,\n    \"evidenceSummary\": \"string\",\n    \"checkedTools\": [\n      \"string\",\n      \"string\"\n    ],\n    \"caveats\": \"string\",\n    \"validatedAt\": \"2004-03-18T19:20:22.907Z\"\n  },\n  \"lane_scores\": {\n    \"A\": 8892.974775227882,\n    \"B\": 4216.5415938468705,\n    \"C\": 536.7371413624033\n  },\n  \"raw_lane_scores\": {\n    \"impact_occurrences\": 2774.803000651943,\n    \"impact_project_occurrences\": 2059.7817640183357,\n    \"impact_project_traces\": 3848.083787530294,\n    \"impact_occurrence_share\": 5047.166508288134,\n    \"impact_affected_traces\": 7414.097953611812,\n    \"impact_trace_share\": 3596.1167794523794,\n    \"impact_trace_share_lower\": 4134.66307044938,\n    \"impact_judged_traces\": 9444.75227824999,\n    \"spike_current\": 5506.508524930422,\n    \"spike_baseline\": 7986.63715121501,\n    \"spike_ratio\": 5037.053928169741,\n    \"spike_baseline_count\": 4753.874442242658,\n    \"spike_baseline_exposure\": 2855.9080327821075,\n    \"spike_current_exposure\": 9144.0576182653,\n    \"persistence_span_days\": 8369.61035805366,\n    \"persistence_active_days\": 2782.577679070951,\n    \"resolution_floor\": 2704.9966384746936\n  },\n  \"lanes_fired\": [\n    \"A\",\n    \"B\"\n  ],\n  \"metric_flags\": {\n    \"impact\": false,\n    \"spike\": false,\n    \"persistence\": false\n  },\n  \"fired_count\": 6413.074710935613,\n  \"surface\": false,\n  \"notify\": false,\n  \"priority_computed_at\": \"1986-01-20T10:48:47.770Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "278ecb6a-027e-4671-9403-19ce1db86e1f",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8e97665-b1de-40fb-91d2-5e21494e50ac",
+          "name": "Set issue status",
+          "request": {
+            "name": "Set issue status",
+            "description": {
+              "content": "Update issue lifecycle status. Resolved and dismissed close the issue and append close feedback.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                ":issue_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issue_id",
+                  "description": "(Required) Issue ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f4771ac-b81c-46fd-84fc-8dec6b03a46e",
+              "name": "Issue status updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c08febd8-d256-4b8c-829c-f86a14497bc7",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de5cdba3-8b99-4ab5-9816-695626e2753e",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"reason\": \"<string>\",\n  \"detail\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "983672a7-cdf7-446c-8c54-a57ac322b73e",
+          "name": "Get issue metric series",
+          "request": {
+            "name": "Get issue metric series",
+            "description": {
+              "content": "Returns zero-filled daily occurrence buckets for an issue over the last 30 days.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                ":issue_id",
+                "metric-series"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "as_of",
+                  "value": "<string>",
+                  "description": "As-of timestamp (ISO-8601) for the 30-day window."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issue_id",
+                  "description": "(Required) Issue ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5f89a38b-a2f8-4422-a3c0-194648a9dd18",
+              "name": "Issue metric series",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "metric-series"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "as_of",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issue_id\": \"string\",\n  \"project_id\": \"string\",\n  \"points\": [\n    {\n      \"date\": \"string\",\n      \"occurrences\": 8192.851682324968,\n      \"estimated_occurrences\": 9540.508518089053,\n      \"estimated_occurrences_variance\": 9839.878160679385,\n      \"occurred\": false\n    },\n    {\n      \"date\": \"string\",\n      \"occurrences\": 6775.021749662723,\n      \"estimated_occurrences\": 1895.6824567593267,\n      \"estimated_occurrences_variance\": 9148.096347404933,\n      \"occurred\": false\n    }\n  ],\n  \"baseline_mean\": 3122.9454506756306,\n  \"band_low\": 5820.531249656065,\n  \"band_high\": 4993.934598331068,\n  \"estimated_baseline_mean\": 9582.633176754754,\n  \"estimated_band_high\": 6395.642933081497\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4abfbefc-225d-44d4-9547-2770b1f79500",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "metric-series"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "as_of",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be744571-03e1-43c4-9a39-20e244358e88",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "metric-series"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "as_of",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81a3f7b1-b855-4928-a9eb-06db06fcff7b",
+          "name": "Get issue artifact context",
+          "request": {
+            "name": "Get issue artifact context",
+            "description": {
+              "content": "Returns bounded learn-agent and uploaded text artifact context for validation and debugging.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                ":issue_id",
+                "artifact-context"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issue_id",
+                  "description": "(Required) Issue ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79f02f1f-45a4-44fb-a64b-2e93cd4fd8b4",
+              "name": "Issue artifact context",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "artifact-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issue_id\": \"string\",\n  \"project_id\": \"string\",\n  \"agent_name\": \"string\",\n  \"available\": {\n    \"learn_agent_kb\": true,\n    \"uploaded_text_artifacts\": false\n  },\n  \"missing\": [\n    \"string\",\n    \"string\"\n  ],\n  \"learn_agent_kb\": {\n    \"version\": 2740.7880375103687,\n    \"agent_name\": \"string\",\n    \"knowledge_preview\": \"string\",\n    \"mermaid_preview\": \"string\",\n    \"knowledge_truncated\": true,\n    \"mermaid_truncated\": false\n  },\n  \"uploaded_text_artifacts\": [\n    {\n      \"id\": \"string\",\n      \"filename\": \"string\",\n      \"content_type\": \"string\",\n      \"size_bytes\": 7573.103814643545,\n      \"content_preview\": \"string\",\n      \"preview_truncated\": true\n    },\n    {\n      \"id\": \"string\",\n      \"filename\": \"string\",\n      \"content_type\": \"string\",\n      \"size_bytes\": 2886.1259246707436,\n      \"content_preview\": \"string\",\n      \"preview_truncated\": false\n    }\n  ],\n  \"caveats\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c5c75a6-33a8-4611-b9ea-f7140b15ffb4",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "artifact-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65a61f4a-052c-4f6a-a16c-6aa3f3b30624",
+          "name": "List issue occurrences",
+          "request": {
+            "name": "List issue occurrences",
+            "description": {
+              "content": "List occurrences for an issue.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                ":issue_id",
+                "occurrences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Number of records to skip."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issue_id",
+                  "description": "(Required) Issue ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95f8d3f4-d7de-48ba-a9a1-55d81be6d499",
+              "name": "Issue occurrences",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "occurrences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"occurrences\": [\n    {\n      \"id\": \"string\",\n      \"trace_id\": \"string\",\n      \"issue_id\": \"string\",\n      \"title\": \"string\",\n      \"rationale\": \"string\",\n      \"source_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"evidence_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": \"1983-05-28T15:51:30.361Z\",\n      \"trace\": {\n        \"id\": \"string\",\n        \"otel_trace_id\": \"string\",\n        \"project_id\": \"string\",\n        \"service_name\": \"string\",\n        \"created_at\": \"2011-03-08T16:01:50.750Z\",\n        \"thread_id\": \"string\"\n      },\n      \"citations\": \"\"\n    },\n    {\n      \"id\": \"string\",\n      \"trace_id\": \"string\",\n      \"issue_id\": \"string\",\n      \"title\": \"string\",\n      \"rationale\": \"string\",\n      \"source_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"evidence_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"created_at\": \"1996-03-10T07:49:46.124Z\",\n      \"trace\": {\n        \"id\": \"string\",\n        \"otel_trace_id\": \"string\",\n        \"project_id\": \"string\",\n        \"service_name\": \"string\",\n        \"created_at\": \"2018-02-12T03:19:55.519Z\",\n        \"thread_id\": \"string\"\n      },\n      \"citations\": \"\"\n    }\n  ],\n  \"total\": 643.167824206694,\n  \"limit\": 4585.187233005453,\n  \"offset\": 9380.31972177697,\n  \"has_more\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2d4d4dc-389e-48e8-8ef3-10216f6c2da6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "occurrences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e31a46a5-2112-4f20-8b26-8f309da0b1ed",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "occurrences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "062fcad7-7654-449b-8aec-24837d3bf5ab",
+          "name": "Get issue chat context",
+          "request": {
+            "name": "Get issue chat context",
+            "description": {
+              "content": "Returns the issue, recent occurrences, aggregate stats, and per-trace bundles (trace row + trace_stats + spans) for issue chat.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                ":issue_id",
+                "chat-context"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issue_id",
+                  "description": "(Required) Issue ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86322b3f-da11-4611-89aa-216243754597",
+              "name": "Issue chat context",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "chat-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issue\": {\n    \"id\": \"string\",\n    \"project_id\": \"string\",\n    \"agent_name\": \"string\",\n    \"name\": \"string\",\n    \"subsystem\": \"string\",\n    \"failure_class\": \"string\",\n    \"canonical_mechanism\": \"string\",\n    \"status\": \"open\",\n    \"created_at\": \"2006-11-17T06:23:51.263Z\",\n    \"updated_at\": \"1948-02-24T05:22:19.091Z\"\n  },\n  \"occurrences\": [\n    {\n      \"id\": \"string\",\n      \"trace_id\": \"string\",\n      \"issue_id\": \"string\",\n      \"title\": \"string\",\n      \"rationale\": \"string\",\n      \"source_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"evidence_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"citations\": \"\",\n      \"category\": \"string\",\n      \"created_at\": \"2010-04-05T21:14:49.800Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"trace_id\": \"string\",\n      \"issue_id\": \"string\",\n      \"title\": \"string\",\n      \"rationale\": \"string\",\n      \"source_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"evidence_span_ids\": [\n        \"string\",\n        \"string\"\n      ],\n      \"citations\": \"\",\n      \"category\": \"string\",\n      \"created_at\": \"1974-10-09T08:02:20.477Z\"\n    }\n  ],\n  \"traces\": [\n    {\n      \"trace\": {\n        \"id\": \"string\",\n        \"project_id\": \"string\",\n        \"service_name\": \"string\",\n        \"created_at\": \"1948-05-11T20:11:20.389Z\",\n        \"updated_at\": \"1981-03-03T22:43:05.163Z\",\n        \"otel_trace_id\": \"string\",\n        \"ready\": false\n      },\n      \"stats\": {\n        \"key_0\": {}\n      },\n      \"spans\": [\n        {\n          \"id\": \"string\",\n          \"otel_span_id\": \"string\",\n          \"parent_otel_span_id\": \"string\",\n          \"name\": \"string\",\n          \"kind\": \"string\",\n          \"start_time_ns\": \"string\",\n          \"end_time_ns\": \"string\",\n          \"duration_ms\": 5961.623549619653,\n          \"status_code\": \"string\",\n          \"status_description\": \"string\",\n          \"input_tokens\": 7030.296075502073,\n          \"output_tokens\": 60.63900826332902,\n          \"model_name\": \"string\",\n          \"tps\": 4324.05427728652,\n          \"attributes\": {\n            \"key_0\": {}\n          },\n          \"events\": \"\"\n        },\n        {\n          \"id\": \"string\",\n          \"otel_span_id\": \"string\",\n          \"parent_otel_span_id\": \"string\",\n          \"name\": \"string\",\n          \"kind\": \"string\",\n          \"start_time_ns\": \"string\",\n          \"end_time_ns\": \"string\",\n          \"duration_ms\": 1077.5292762915556,\n          \"status_code\": \"string\",\n          \"status_description\": \"string\",\n          \"input_tokens\": 9223.262967595252,\n          \"output_tokens\": 9303.429349686396,\n          \"model_name\": \"string\",\n          \"tps\": 4722.679900421845,\n          \"attributes\": {\n            \"key_0\": {}\n          },\n          \"events\": \"\"\n        }\n      ]\n    },\n    {\n      \"trace\": {\n        \"id\": \"string\",\n        \"project_id\": \"string\",\n        \"service_name\": \"string\",\n        \"created_at\": \"1992-10-04T07:51:04.978Z\",\n        \"updated_at\": \"1962-12-19T05:47:30.911Z\",\n        \"otel_trace_id\": \"string\",\n        \"ready\": true\n      },\n      \"stats\": {\n        \"key_0\": {}\n      },\n      \"spans\": [\n        {\n          \"id\": \"string\",\n          \"otel_span_id\": \"string\",\n          \"parent_otel_span_id\": \"string\",\n          \"name\": \"string\",\n          \"kind\": \"string\",\n          \"start_time_ns\": \"string\",\n          \"end_time_ns\": \"string\",\n          \"duration_ms\": 6333.049259035039,\n          \"status_code\": \"string\",\n          \"status_description\": \"string\",\n          \"input_tokens\": 8549.498684189817,\n          \"output_tokens\": 8532.357496849907,\n          \"model_name\": \"string\",\n          \"tps\": 7234.368240388407,\n          \"attributes\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          },\n          \"events\": \"\"\n        },\n        {\n          \"id\": \"string\",\n          \"otel_span_id\": \"string\",\n          \"parent_otel_span_id\": \"string\",\n          \"name\": \"string\",\n          \"kind\": \"string\",\n          \"start_time_ns\": \"string\",\n          \"end_time_ns\": \"string\",\n          \"duration_ms\": 5539.017776552944,\n          \"status_code\": \"string\",\n          \"status_description\": \"string\",\n          \"input_tokens\": 7430.760662188824,\n          \"output_tokens\": 3201.551182479836,\n          \"model_name\": \"string\",\n          \"tps\": 82.18260626318808,\n          \"attributes\": {\n            \"key_0\": {}\n          },\n          \"events\": \"\"\n        }\n      ]\n    }\n  ],\n  \"stats\": {\n    \"first_seen_at\": \"1952-05-05T19:15:24.418Z\",\n    \"last_seen_at\": \"2019-07-01T05:01:26.962Z\",\n    \"occurrence_count\": 7714.297171210048,\n    \"trace_count\": 2452.34376074043\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7b9a98d-d0ff-427d-8bf1-573ab6098529",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "chat-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2bc9f3d-8d91-4c5f-8962-43ebde6d59c4",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "chat-context"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc531d2c-ac74-485b-93b4-0192986c529b",
+          "name": "Get issue markdown",
+          "request": {
+            "name": "Get issue markdown",
+            "description": {
+              "content": "Build markdown for an issue.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "issues",
+                ":issue_id",
+                "markdown"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "project_id",
+                  "value": "<string>",
+                  "description": "(Required) Project ID."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issue_id",
+                  "description": "(Required) Issue ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "316626fb-0595-4dca-a9e3-2d7b473bcb72",
+              "name": "Issue markdown",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "markdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"markdown\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c1ca098-e1d0-4611-ad35-0afc0651c075",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "markdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51fb0f05-de95-4a90-bb1e-ec7f12b60352",
+              "name": "Not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "issues",
+                    ":issue_id",
+                    "markdown"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "project_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issue_id",
+                      "description": "(Required) Issue ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.uselemma.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e62ce8b4-8042-43b8-b687-72ae420d284d",
+    "name": "Lemma Platform Artifacts Issues API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Lemma Platform HTTP API for AI observability and workspace operations.",
+      "type": "text/plain"
+    }
+  }
+}

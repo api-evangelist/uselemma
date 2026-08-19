@@ -1,0 +1,615 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemma Platform Artifacts Traces API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Traces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List traces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "error_only",
+                "value": "",
+                "type": "query",
+                "description": "Only return traces with errors."
+              }
+            ]
+          },
+          "docs": "Returns traces for a project."
+        },
+        {
+          "info": {
+            "name": "List dashboard traces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces/dashboard",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Pagination cursor."
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "query",
+                "description": "Agent name filter."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort order."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "failures (span errors), flagged (issue occurrences), or clean."
+              },
+              {
+                "name": "min_spans",
+                "value": "",
+                "type": "query",
+                "description": "Minimum span count."
+              },
+              {
+                "name": "max_spans",
+                "value": "",
+                "type": "query",
+                "description": "Maximum span count."
+              },
+              {
+                "name": "min_duration_ms",
+                "value": "",
+                "type": "query",
+                "description": "Minimum trace duration (ms)."
+              },
+              {
+                "name": "max_duration_ms",
+                "value": "",
+                "type": "query",
+                "description": "Maximum trace duration (ms)."
+              },
+              {
+                "name": "min_tokens",
+                "value": "",
+                "type": "query",
+                "description": "Minimum total (input + output) tokens."
+              },
+              {
+                "name": "min_thread_traces",
+                "value": "",
+                "type": "query",
+                "description": "Minimum number of traces in the session/thread."
+              },
+              {
+                "name": "max_thread_traces",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of traces in the session/thread."
+              }
+            ]
+          },
+          "docs": "Returns dashboard-ready traces for a project."
+        },
+        {
+          "info": {
+            "name": "Search traces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces/search",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query."
+              },
+              {
+                "name": "tool_name",
+                "value": "",
+                "type": "query",
+                "description": "Tool name filter."
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Model filter."
+              },
+              {
+                "name": "agent_name",
+                "value": "",
+                "type": "query",
+                "description": "Agent name filter."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Dashboard status filter."
+              },
+              {
+                "name": "error_only",
+                "value": "",
+                "type": "query",
+                "description": "Only return traces with errors."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp."
+              },
+              {
+                "name": "min_spans",
+                "value": "",
+                "type": "query",
+                "description": "Minimum span count."
+              },
+              {
+                "name": "max_spans",
+                "value": "",
+                "type": "query",
+                "description": "Maximum span count."
+              },
+              {
+                "name": "min_duration_ms",
+                "value": "",
+                "type": "query",
+                "description": "Minimum trace duration (ms)."
+              },
+              {
+                "name": "max_duration_ms",
+                "value": "",
+                "type": "query",
+                "description": "Maximum trace duration (ms)."
+              },
+              {
+                "name": "min_tokens",
+                "value": "",
+                "type": "query",
+                "description": "Minimum total token count."
+              },
+              {
+                "name": "min_thread_traces",
+                "value": "",
+                "type": "query",
+                "description": "Minimum thread trace count."
+              },
+              {
+                "name": "max_thread_traces",
+                "value": "",
+                "type": "query",
+                "description": "Maximum thread trace count."
+              },
+              {
+                "name": "attribute_filters",
+                "value": "",
+                "type": "query",
+                "description": "JSON-serialized span attribute filters."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              }
+            ]
+          },
+          "docs": "Search traces with structural and behavioral filters."
+        },
+        {
+          "info": {
+            "name": "Semantic search traces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces/semantic-search",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Natural-language semantic search query."
+              },
+              {
+                "name": "tool_name",
+                "value": "",
+                "type": "query",
+                "description": "Tool name filter."
+              },
+              {
+                "name": "model",
+                "value": "",
+                "type": "query",
+                "description": "Model filter."
+              },
+              {
+                "name": "error_only",
+                "value": "",
+                "type": "query",
+                "description": "Only return traces with errors."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start timestamp."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "End timestamp."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              }
+            ]
+          },
+          "docs": "Search traces by semantic similarity over embedded trace summaries."
+        },
+        {
+          "info": {
+            "name": "List trace agent names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces/agent-names",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              }
+            ]
+          },
+          "docs": "Returns agent names seen in project traces."
+        },
+        {
+          "info": {
+            "name": "Check ready traces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces/has-ready",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              }
+            ]
+          },
+          "docs": "Returns whether a project has ready traces."
+        },
+        {
+          "info": {
+            "name": "Check per-trace ingest status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces/ingest-status",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              },
+              {
+                "name": "otel_trace_id",
+                "value": "",
+                "type": "query",
+                "description": "OTel / SDK trace id to look up."
+              }
+            ]
+          },
+          "docs": "Returns enqueued (Redis index), ingested (ClickHouse traces row), ready (trace_stats), or not_found for a specific otel_trace_id."
+        },
+        {
+          "info": {
+            "name": "Bulk delete traces",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.uselemma.ai/traces/bulk-delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete multiple traces for a project."
+        },
+        {
+          "info": {
+            "name": "Get agent names by trace ids",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.uselemma.ai/traces/agent-names-by-ids",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a map of trace id to agent name (from ClickHouse trace_stats)."
+        },
+        {
+          "info": {
+            "name": "Get trace by run id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces/by-run-id",
+            "params": [
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "query",
+                "description": "Agent run id."
+              }
+            ]
+          },
+          "docs": "Resolves a trace from an agent run id."
+        },
+        {
+          "info": {
+            "name": "Get trace context bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces/:trace_id/context",
+            "params": [
+              {
+                "name": "trace_id",
+                "value": "",
+                "type": "path",
+                "description": "Trace ID."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              }
+            ]
+          },
+          "docs": "Returns the trace row, trace_stats row, ordered spans, and issue occurrences for chat/agent context."
+        },
+        {
+          "info": {
+            "name": "Get trace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces/:trace_id",
+            "params": [
+              {
+                "name": "trace_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Loads a single trace with spans and stats."
+        },
+        {
+          "info": {
+            "name": "Delete trace",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.uselemma.ai/traces/:trace_id",
+            "params": [
+              {
+                "name": "trace_id",
+                "value": "",
+                "type": "path",
+                "description": "Trace ID."
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project ID."
+              }
+            ]
+          },
+          "docs": "Delete a trace for a project."
+        },
+        {
+          "info": {
+            "name": "List trace spans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces/:trace_id/spans",
+            "params": [
+              {
+                "name": "trace_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns spans for a ready trace."
+        },
+        {
+          "info": {
+            "name": "Get thread trace neighbors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces/:trace_id/thread-neighbors",
+            "params": [
+              {
+                "name": "trace_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns previous and next ready traces from the same thread."
+        },
+        {
+          "info": {
+            "name": "List thread traces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces/:trace_id/thread",
+            "params": [
+              {
+                "name": "trace_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns every ready trace in the given trace's thread, enriched and ordered oldest first. Empty for standalone traces."
+        },
+        {
+          "info": {
+            "name": "List trace issue occurrences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.uselemma.ai/traces/:trace_id/issue_occurrences",
+            "params": [
+              {
+                "name": "trace_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns issue occurrence evidence linked to a ready trace."
+        },
+        {
+          "info": {
+            "name": "List thread issue summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.uselemma.ai/projects/:project_id/thread-issue-summaries",
+            "params": [
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "path",
+                "description": "Project ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Batch-fetch issue extraction completion and destin issues for thread_ids (join key for eval trial_hash)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
