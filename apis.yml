@@ -78,6 +78,8 @@ apis:
   humanURL: https://docs.uselemma.ai/api-reference
   baseURL: https://api.uselemma.ai
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
