@@ -1,10 +1,7 @@
 {
   "provider": "uselemma",
   "sources": [
-    "uselemma-artifacts-api-openapi.yml",
-    "uselemma-issues-api-openapi.yml",
-    "uselemma-projects-api-openapi.yml",
-    "uselemma-traces-api-openapi.yml"
+    "_original/uselemma-platform-api-openapi-original.json"
   ],
   "outputs": [
     "uselemma-artifacts-api-openapi.yml",
@@ -15,6 +12,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "uselemma-platform-api-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "uselemma-platform-api-openapi-original.json: declared missing tag: Artifacts",
+    "uselemma-platform-api-openapi-original.json: declared missing tag: Issues",
+    "uselemma-platform-api-openapi-original.json: declared missing tag: Projects",
+    "uselemma-platform-api-openapi-original.json: declared missing tag: Traces",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "uselemma-artifacts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "uselemma-issues-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "uselemma-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "uselemma-traces-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
