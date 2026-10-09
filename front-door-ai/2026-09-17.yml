@@ -1,0 +1,34 @@
+# Front Door AI Index — uselemma — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: uselemma
+  lexicon_version: '1.0'
+  probed_at: '2026-09-25'
+  host: www.uselemma.ai
+  final_host: www.uselemma.ai
+  ownership: own
+  owner: uselemma
+  shares_host_with: null
+  inherited_from: null
+  alias_of: null
+  verdict: scored
+  score: 20
+  band: 5
+  band_label: prominent
+  host_score: 20
+  density: 18.1
+  words: 1105
+  tiers:
+    agentic: 12
+    core: 7
+    model: 1
+  ambiguous: 29
+  top_terms:
+    agent: 29
+    AI: 7
+    prompts: 7
+    AI agent: 3
+    AI assistant: 1
+    Claude: 1
+    autonomous agent: 1
