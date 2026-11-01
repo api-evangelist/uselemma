@@ -1,4 +1,4 @@
-# Uselemma
+# Lemma
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,6 +64,124 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Uselemma is a company surfaced as a portfolio company of y-combinator and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Lemma (uselemma.ai, Forge AI Labs, Inc., Y Combinator Fall 2025) is a production monitoring and observability platform for AI agents. Teams instrument agents with the Lemma tracing SDKs (TypeScript and Python) so every agent execution becomes one trace with LLM generations, tool calls, and app-logic spans as children; Lemma then surfaces silent semantic failures, groups recurring issues with root-cause analysis, sends signed incident webhooks, and exposes the whole surface — projects, traces, issues, and learn-agent artifacts — through the Lemma Platform API and an official remote MCP server so coding agents can pull the exact runs and errors they need and fix issues in place.
 
-Backed by: y-combinator
+**Areas:** Company · Artificial Intelligence · AI Agents · Observability · Monitoring · Tracing · Developer Tools · B2B
+
+## Lemma on APIs.io
+
+Everything profiled for Lemma is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/uselemma/](https://apis.io/providers/uselemma/)** — or go straight to one of the APIs or properties below.
+
+### APIs (4)
+
+- [Lemma Artifacts API](https://apis.io/apis/uselemma/uselemma-artifacts-api/) — The Artifacts API from Lemma — 6 operation(s) for artifacts.
+- [Lemma Issues API](https://apis.io/apis/uselemma/uselemma-issues-api/) — The Issues API from Lemma — 8 operation(s) for issues.
+- [Lemma Projects API](https://apis.io/apis/uselemma/uselemma-projects-api/) — The Projects API from Lemma — 6 operation(s) for projects.
+- [Lemma Traces API](https://apis.io/apis/uselemma/uselemma-traces-api/) — The Traces API from Lemma — 17 operation(s) for traces.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Uselemma Webhooks](https://apis.io/asyncapis/uselemma/uselemma-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [lemma](https://apis.io/servers/uselemma/lemma/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Lemma Platform Artifacts API](https://apis.io/collections/uselemma/open-uselemma-artifacts-api/)
+- [Lemma Platform Artifacts Issues API](https://apis.io/collections/uselemma/open-uselemma-issues-api/)
+- [Lemma Platform Artifacts Projects API](https://apis.io/collections/uselemma/open-uselemma-projects-api/)
+- [Lemma Platform Artifacts Traces API](https://apis.io/collections/uselemma/open-uselemma-traces-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Uselemma Platform Overlay](https://apis.io/overlays/uselemma/uselemma-platform-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Uselemma Authentication](https://apis.io/security/uselemma/uselemma-authentication/)
+- [Uselemma Domain Security](https://apis.io/security/uselemma/uselemma-domain-security/)
+- [Uselemma Trust Center](https://apis.io/security/uselemma/uselemma-trust-center/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.uselemma.ai)
+- [Documentation](https://docs.uselemma.ai)
+- [Getting started](https://docs.uselemma.ai/getting-started/quickstart)
+- [Support](https://github.com/uselemma/lemma/issues)
+- [Changelog](https://www.uselemma.ai/changelog)
+- [Blog](https://www.uselemma.ai/blog)
+- [Trust centre](https://trust.uselemma.ai/)
+- [GitHub](https://github.com/uselemma)
+
+## API Evangelist rating
+
+**Kin Score 42.5** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 56.4 |
+| Contract governance | 4.5 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 61.9 |
+| Access clarity | 21.1 |
+
+**Agent readiness 37.8** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | documented (partial credit) |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | yes |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 20.0** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/uselemma/](https://apis.io/providers/uselemma/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Lemma: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/uselemma/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
